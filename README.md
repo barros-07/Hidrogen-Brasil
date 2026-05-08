@@ -7,11 +7,11 @@ Objetivo
 Criar uma apresentação mais profissional da empresa, melhorando a identidade visual, organização digital e experiência de divulgação dos produtos.
 
 Funcionalidades
-	•	Tratamento e aprimoramento de imagens dos produtos;
-	•	Organização da vitrine digital;
-	•	Estudo de integração com e-commerce;
-	•	Desenvolvimento visual para divulgação comercial;
-	•	Estruturação da presença digital da marca.
+	-	Tratamento e aprimoramento de imagens dos produtos;
+	-	Organização da vitrine digital;
+	-	Estudo de integração com e-commerce;
+	-	Desenvolvimento visual para divulgação comercial;
+	-	Estruturação da presença digital da marca.
 
 Tecnologias e Ferramentas
 	•	Edição de imagens com IA;
