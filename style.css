@@ -126,7 +126,7 @@
     transition: all 0.3s ease;
   }
   #navbar.scrolled {
-    background: rgba(10,22,40,0.96);
+    background: rgba(5,10,20,1);
     backdrop-filter: blur(20px);
     padding: 12px 0;
     border-bottom: 1px solid rgba(0,212,255,0.12);
