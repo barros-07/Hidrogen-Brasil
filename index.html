@@ -364,8 +364,8 @@
 </section>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║   POR QUE HIDROGEN — v4                      ║ -->
-<!-- ║   Headers lado a lado, conteúdo alinhado      ║ -->
+<!-- ║   POR QUE HIDROGEN — v5                      ║ -->
+<!-- ║   Cards esquerda / Lista direita, alinhados   ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
  
 <section id="por-que-hidrogen" class="institucional-hero" aria-labelledby="heading-hidrogen-principal">
@@ -373,84 +373,56 @@
  
     <!-- STATS BAR -->
     <div class="inst-stats-bar" role="list" aria-label="Marcos da Hidrogen Brasil">
- 
       <div class="inst-stat" role="listitem">
         <div class="inst-stat-inner">
           <strong class="inst-stat-num">2017</strong>
           <span class="inst-stat-label">Fundação da <span class="text-gold">Hidrogen Brasil</span></span>
         </div>
       </div>
- 
       <div class="inst-stat" role="listitem">
         <div class="inst-stat-inner">
           <strong class="inst-stat-num">2019</strong>
           <span class="inst-stat-label">Linha de maçaricos <span class="text-cyan">de precisão</span></span>
         </div>
       </div>
- 
       <div class="inst-stat" role="listitem">
         <div class="inst-stat-inner">
           <strong class="inst-stat-num">3.000<span class="inst-stat-plus">+</span></strong>
           <span class="inst-stat-label">Clientes em todo o Brasil</span>
         </div>
       </div>
- 
       <div class="inst-stat" role="listitem">
         <div class="inst-stat-inner">
           <strong class="inst-stat-num">100<span class="inst-stat-unit">%</span></strong>
           <span class="inst-stat-label"><span class="text-green">Eletrólito próprio</span> · Sem substâncias nocivas</span>
         </div>
       </div>
- 
     </div>
  
  
-    <!-- ══════════════════════════════════════════ -->
-    <!-- HEADERS LADO A LADO (mesma linha, mesmo    -->
-    <!-- ponto de partida para o conteúdo abaixo)   -->
-    <!-- ══════════════════════════════════════════ -->
-    <div class="inst-headers-row">
- 
-      <!-- Header esquerdo -->
-      <div class="inst-header-col">
-        <span class="tag">Nossa diferenciação</span>
-        <h2 id="heading-hidrogen-principal" class="section-title">
-          Por que escolher a
-          <span class="text-gold">Hidrogen Brasil</span>?
-        </h2>
-        <p class="inst-col-intro">
-          A única empresa que projeta, fabrica e suporta toda a cadeia —
-          do equipamento ao eletrólito — com <strong>tecnologia própria desde 2017</strong>.
-        </p>
-      </div>
- 
-      <!-- Header direito -->
-      <div class="inst-header-col">
-        <span class="tag">Para o seu negócio</span>
-        <h3 id="heading-macaeiro" class="section-subtitle">
-          Por que investir em um
-          <span class="text-cyan">maçarico de hidrogênio</span>?
-        </h3>
-        <p class="inst-col-intro">
-          Elimine cilindros, burocracia e riscos — com retorno de investimento
-          em poucos meses.
-        </p>
-      </div>
- 
-    </div><!-- /inst-headers-row -->
- 
- 
-    <!-- ══════════════════════════════════════════ -->
-    <!-- CONTEÚDO — ambos os lados começam aqui,    -->
-    <!-- no mesmo ponto vertical                    -->
-    <!-- ══════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <!-- WRAPPER PRINCIPAL: grid de 2 colunas completo      -->
+    <!-- Cada coluna tem: header + conteúdo                 -->
+    <!-- align-items: start garante alinhamento pelo topo   -->
+    <!-- ══════════════════════════════════════════════════ -->
     <div class="inst-grid" style="align-items:start;">
  
- 
-      <!-- COLUNA ESQUERDA — cards diferenciais -->
+      <!-- ── COLUNA ESQUERDA: header grande + cards ── -->
       <article class="inst-col inst-col--diferenciais" aria-labelledby="heading-hidrogen-principal">
  
-        <!-- Espaço para imagem institucional -->
+        <header class="inst-col-header">
+          <span class="tag">Nossa diferenciação</span>
+          <h2 id="heading-hidrogen-principal" class="section-title">
+            Por que escolher a
+            <span class="text-gold">Hidrogen Brasil</span>?
+          </h2>
+          <p class="inst-col-intro">
+            A única empresa que projeta, fabrica e suporta toda a cadeia —
+            do equipamento ao eletrólito — com <strong>tecnologia própria desde 2017</strong>.
+          </p>
+        </header>
+ 
+        <!-- Imagem institucional -->
         <div class="inst-image-wrapper" aria-hidden="true">
           <div class="inst-image-glow"></div>
           <div class="inst-image-container">
@@ -472,13 +444,12 @@
           <div class="inst-image-overlay"></div>
         </div>
  
+        <!-- Cards -->
         <ul class="inst-diff-grid" aria-label="Diferenciais da Hidrogen Brasil" style="list-style:none;padding:0;margin:0;">
  
           <li class="inst-diff-card">
             <div class="inst-diff-card-inner">
-              <div class="inst-diff-icon-wrapper" aria-hidden="true">
-                <span class="inst-diff-icon">🧪</span>
-              </div>
+              <div class="inst-diff-icon-wrapper" aria-hidden="true"><span class="inst-diff-icon">🧪</span></div>
               <div class="inst-diff-content">
                 <h4 class="inst-diff-title"><span class="text-green">Eletrólito próprio</span></h4>
                 <p class="inst-diff-text">Formulado internamente. Seguro e eficiente em cada ampola.</p>
@@ -488,9 +459,7 @@
  
           <li class="inst-diff-card">
             <div class="inst-diff-card-inner">
-              <div class="inst-diff-icon-wrapper" aria-hidden="true">
-                <span class="inst-diff-icon">🏭</span>
-              </div>
+              <div class="inst-diff-icon-wrapper" aria-hidden="true"><span class="inst-diff-icon">🏭</span></div>
               <div class="inst-diff-content">
                 <h4 class="inst-diff-title"><span class="text-cyan">Fabricante direto</span></h4>
                 <p class="inst-diff-text">Sem intermediários. Assistência técnica direta de fábrica.</p>
@@ -500,9 +469,7 @@
  
           <li class="inst-diff-card">
             <div class="inst-diff-card-inner">
-              <div class="inst-diff-icon-wrapper" aria-hidden="true">
-                <span class="inst-diff-icon">🌿</span>
-              </div>
+              <div class="inst-diff-icon-wrapper" aria-hidden="true"><span class="inst-diff-icon">🌿</span></div>
               <div class="inst-diff-content">
                 <h4 class="inst-diff-title"><span class="text-green">Tecnologia limpa</span></h4>
                 <p class="inst-diff-text">Sem riscos à saúde dos operadores nem ao meio ambiente.</p>
@@ -512,9 +479,7 @@
  
           <li class="inst-diff-card">
             <div class="inst-diff-card-inner">
-              <div class="inst-diff-icon-wrapper" aria-hidden="true">
-                <span class="inst-diff-icon">🔧</span>
-              </div>
+              <div class="inst-diff-icon-wrapper" aria-hidden="true"><span class="inst-diff-icon">🔧</span></div>
               <div class="inst-diff-content">
                 <h4 class="inst-diff-title"><span class="text-cyan">Suporte especializado</span></h4>
                 <p class="inst-diff-text">Equipe técnica própria do primeiro uso à manutenção preventiva.</p>
@@ -524,9 +489,7 @@
  
           <li class="inst-diff-card">
             <div class="inst-diff-card-inner">
-              <div class="inst-diff-icon-wrapper" aria-hidden="true">
-                <span class="inst-diff-icon">📐</span>
-              </div>
+              <div class="inst-diff-icon-wrapper" aria-hidden="true"><span class="inst-diff-icon">📐</span></div>
               <div class="inst-diff-content">
                 <h4 class="inst-diff-title"><span class="text-gold">Portfólio completo</span></h4>
                 <p class="inst-diff-text">Máquinas, agulhas e eletrólitos — tudo de uma fonte só.</p>
@@ -536,9 +499,7 @@
  
           <li class="inst-diff-card">
             <div class="inst-diff-card-inner">
-              <div class="inst-diff-icon-wrapper" aria-hidden="true">
-                <span class="inst-diff-icon">🏆</span>
-              </div>
+              <div class="inst-diff-icon-wrapper" aria-hidden="true"><span class="inst-diff-icon">🏆</span></div>
               <div class="inst-diff-content">
                 <h4 class="inst-diff-title"><span class="text-gold">Experiência comprovada</span></h4>
                 <p class="inst-diff-text"><strong>+3.000 clientes</strong> em 8 anos. Confiança, não promessas.</p>
@@ -551,60 +512,53 @@
       </article>
  
  
-      <!-- COLUNA DIREITA — lista de razões -->
+      <!-- ── COLUNA DIREITA: header pequeno + lista ── -->
       <article class="inst-col inst-col--razoes" aria-labelledby="heading-macaeiro">
  
+        <header class="inst-col-header">
+          <span class="tag">Para o seu negócio</span>
+          <h3 id="heading-macaeiro" class="section-subtitle">
+            Por que investir em um
+            <span class="text-cyan">maçarico de hidrogênio</span>?
+          </h3>
+          <p class="inst-col-intro">
+            Elimine cilindros, burocracia e riscos — com retorno de investimento
+            em poucos meses.
+          </p>
+        </header>
+ 
+        <!-- Lista de razões -->
         <ol class="inst-reason-list" aria-label="Razões para investir" style="list-style:none;padding:0;margin:0;">
  
           <li class="inst-reason">
             <div class="inst-reason-num" aria-hidden="true">1</div>
             <div class="inst-reason-body">
-              <h4 class="inst-reason-title">
-                Elimina custos com <span class="text-gold">GLP e Acetileno</span>
-              </h4>
-              <p class="inst-reason-text">
-                Redução de até <strong>70% nos custos operacionais</strong> mensais,
-                com retorno em poucos meses.
-              </p>
+              <h4 class="inst-reason-title">Elimina custos com <span class="text-gold">GLP e Acetileno</span></h4>
+              <p class="inst-reason-text">Redução de até <strong>70% nos custos operacionais</strong> mensais, com retorno em poucos meses.</p>
             </div>
           </li>
  
           <li class="inst-reason">
             <div class="inst-reason-num" aria-hidden="true">2</div>
             <div class="inst-reason-body">
-              <h4 class="inst-reason-title">
-                <span class="text-cyan">Precisão superior</span> na chama
-              </h4>
-              <p class="inst-reason-text">
-                Chama limpa e estável para ouro, prata e titânio —
-                sem carbonização, sem retrabalho.
-              </p>
+              <h4 class="inst-reason-title"><span class="text-cyan">Precisão superior</span> na chama</h4>
+              <p class="inst-reason-text">Chama limpa e estável para ouro, prata e titânio — sem carbonização, sem retrabalho.</p>
             </div>
           </li>
  
           <li class="inst-reason">
             <div class="inst-reason-num" aria-hidden="true">3</div>
             <div class="inst-reason-body">
-              <h4 class="inst-reason-title">
-                Opera em <span class="text-green">qualquer ambiente</span>
-              </h4>
-              <p class="inst-reason-text">
-                <strong>Sem alvarás específicos.</strong> Shoppings, clínicas
-                e prédios comerciais sem restrições.
-              </p>
+              <h4 class="inst-reason-title">Opera em <span class="text-green">qualquer ambiente</span></h4>
+              <p class="inst-reason-text"><strong>Sem alvarás específicos.</strong> Shoppings, clínicas e prédios comerciais sem restrições.</p>
             </div>
           </li>
  
           <li class="inst-reason">
             <div class="inst-reason-num" aria-hidden="true">4</div>
             <div class="inst-reason-body">
-              <h4 class="inst-reason-title">
-                Geração <span class="text-cyan">on-demand</span>
-              </h4>
-              <p class="inst-reason-text">
-                Gás gerado e consumido na hora —
-                zero estoque, zero desperdício, zero risco.
-              </p>
+              <h4 class="inst-reason-title">Geração <span class="text-cyan">on-demand</span></h4>
+              <p class="inst-reason-text">Gás gerado e consumido na hora — zero estoque, zero desperdício, zero risco.</p>
             </div>
           </li>
  
@@ -616,6 +570,7 @@
  
   </div><!-- /container -->
 </section>
+ 
  
  
  
