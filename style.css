@@ -1242,6 +1242,16 @@
   @media (max-width: 900px) {
     .inst-grid { grid-template-columns: 1fr; gap: 48px; }
   }
+  .inst-headers-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap, 40px); /* use o mesmo gap do inst-grid */
+    margin-bottom: 32px;
+  }
+  .inst-header-col {
+    display: flex;
+    flex-direction: column;
+  }  
   .inst-reason-list {
     display: flex;
     flex-direction: column;
