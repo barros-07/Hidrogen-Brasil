@@ -364,8 +364,8 @@
 </section>
 
 <!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║   POR QUE HIDROGEN — SEÇÃO INSTITUCIONAL     ║ -->
-<!-- ║   v3: colunas invertidas, sem bullets         ║ -->
+<!-- ║   POR QUE HIDROGEN — v4                      ║ -->
+<!-- ║   Headers lado a lado, conteúdo alinhado      ║ -->
 <!-- ╚══════════════════════════════════════════════╝ -->
  
 <section id="por-que-hidrogen" class="institucional-hero" aria-labelledby="heading-hidrogen-principal">
@@ -405,24 +405,50 @@
     </div>
  
  
-    <!-- GRID PRINCIPAL — esquerda: diferenciais | direita: razões -->
-    <div class="inst-grid">
+    <!-- ══════════════════════════════════════════ -->
+    <!-- HEADERS LADO A LADO (mesma linha, mesmo    -->
+    <!-- ponto de partida para o conteúdo abaixo)   -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="inst-headers-row">
+ 
+      <!-- Header esquerdo -->
+      <div class="inst-header-col">
+        <span class="tag">Nossa diferenciação</span>
+        <h2 id="heading-hidrogen-principal" class="section-title">
+          Por que escolher a
+          <span class="text-gold">Hidrogen Brasil</span>?
+        </h2>
+        <p class="inst-col-intro">
+          A única empresa que projeta, fabrica e suporta toda a cadeia —
+          do equipamento ao eletrólito — com <strong>tecnologia própria desde 2017</strong>.
+        </p>
+      </div>
+ 
+      <!-- Header direito -->
+      <div class="inst-header-col">
+        <span class="tag">Para o seu negócio</span>
+        <h3 id="heading-macaeiro" class="section-subtitle">
+          Por que investir em um
+          <span class="text-cyan">maçarico de hidrogênio</span>?
+        </h3>
+        <p class="inst-col-intro">
+          Elimine cilindros, burocracia e riscos — com retorno de investimento
+          em poucos meses.
+        </p>
+      </div>
+ 
+    </div><!-- /inst-headers-row -->
  
  
-      <!-- ── COLUNA ESQUERDA — Por que Hidrogen Brasil ── -->
+    <!-- ══════════════════════════════════════════ -->
+    <!-- CONTEÚDO — ambos os lados começam aqui,    -->
+    <!-- no mesmo ponto vertical                    -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="inst-grid" style="align-items:start;">
+ 
+ 
+      <!-- COLUNA ESQUERDA — cards diferenciais -->
       <article class="inst-col inst-col--diferenciais" aria-labelledby="heading-hidrogen-principal">
- 
-        <header class="inst-col-header">
-          <span class="tag">Nossa diferenciação</span>
-          <h2 id="heading-hidrogen-principal" class="section-title">
-            Por que escolher a
-            <span class="text-gold">Hidrogen Brasil</span>?
-          </h2>
-          <p class="inst-col-intro">
-            A única empresa que projeta, fabrica e suporta toda a cadeia —
-            do equipamento ao eletrólito — com <strong>tecnologia própria desde 2017</strong>.
-          </p>
-        </header>
  
         <!-- Espaço para imagem institucional -->
         <div class="inst-image-wrapper" aria-hidden="true">
@@ -446,7 +472,6 @@
           <div class="inst-image-overlay"></div>
         </div>
  
-        <!-- Grid de diferenciais — sem bullets -->
         <ul class="inst-diff-grid" aria-label="Diferenciais da Hidrogen Brasil" style="list-style:none;padding:0;margin:0;">
  
           <li class="inst-diff-card">
@@ -526,22 +551,9 @@
       </article>
  
  
-      <!-- ── COLUNA DIREITA — Por que maçarico hidrogênio ── -->
+      <!-- COLUNA DIREITA — lista de razões -->
       <article class="inst-col inst-col--razoes" aria-labelledby="heading-macaeiro">
  
-        <header class="inst-col-header">
-          <span class="tag">Para o seu negócio</span>
-          <h3 id="heading-macaeiro" class="section-subtitle">
-            Por que investir em um
-            <span class="text-cyan">maçarico de hidrogênio</span>?
-          </h3>
-          <p class="inst-col-intro">
-            Elimine cilindros, burocracia e riscos — com retorno de investimento
-            em poucos meses.
-          </p>
-        </header>
- 
-        <!-- Lista de razões — sem bullets -->
         <ol class="inst-reason-list" aria-label="Razões para investir" style="list-style:none;padding:0;margin:0;">
  
           <li class="inst-reason">
@@ -604,6 +616,7 @@
  
   </div><!-- /container -->
 </section>
+ 
  
  
 
