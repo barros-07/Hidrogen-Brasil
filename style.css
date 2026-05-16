@@ -731,6 +731,11 @@
     overflow: hidden;
     transition: max-height 0.4s ease;
   }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
   .faq-answer-inner {
     padding: 0 0 24px;
     font-size: 15px;
