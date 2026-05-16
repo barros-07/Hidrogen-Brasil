@@ -99,4 +99,3 @@ window.toggleFaq = function(el) {
     dots.forEach(function(d,i){ d.classList.toggle('active', i===s.cur); });
   }
 })();
-</script>
