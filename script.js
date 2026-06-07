@@ -1,4 +1,11 @@
- // Navbar scroll effect
+document.getElementById("teste").onclick = async () => {
+  const resposta = await fetch("/api/teste");
+
+  const dados = await resposta.json();
+
+  console.log(dados);
+};
+// Navbar scroll effect
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
 });
