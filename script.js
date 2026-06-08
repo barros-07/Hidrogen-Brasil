@@ -1,37 +1,35 @@
-//checkout-teste
-const botaoH1 = document.getElementById("comprar-h1");
+// checkout-teste
+const botaoH1 = document.getElementById('comprar-h1'); 
 
-if (botaoH1) {
-    botaoH1.addEventListener("click", async (e) => {
+if (botaoH1) { 
+    botaoH1.addEventListener('click', async (e) => { 
+        e.preventDefault(); 
+        const resposta = await fetch('/api/criar-pagamento', { 
+            method: 'POST', 
+            headers: { 
+                'Content-Type': 'application/json' 
+            }, 
+            body: JSON.stringify({ produto: 'macarico-h1' }) 
+        }); 
+        const dados = await resposta.json(); 
+        window.location.href = dados.checkout; 
+    }); 
+} // Fechamento correto do 'if'
 
-        e.preventDefault();
-
-        const resposta = await fetch("/api/criar-pagamento", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                produto: "macarico-h1"
-            })
-        });
-
-        const dados = await resposta.json();
-
-        window.location.href = dados.checkout;
-    });
-}
-};
 // Navbar scroll effect
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
-});
- 
+window.addEventListener('scroll', () => { 
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40); 
+}); 
+
 // Mobile menu
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+function toggleMenu() { 
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open'); 
+    
+    // Corrigido para definir como 'hidden' ou string vazia corretamente
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : ''; 
 }
+
  
 // FAQ accordion
 window.toggleFaq = function(el) {
