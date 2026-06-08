@@ -1,16 +1,5 @@
-export default async function handler(req, res) {
-
-    if (req.method === "POST") {
-
-        const dados = req.body;
-
-        return res.status(200).json({
-            mensagem: "Recebi os dados",
-            dados
-        });
-    }
-
+export default function handler(req, res) {
     res.status(200).json({
-        status: "Backend funcionando"
+        checkout: "https://google.com"
     });
 }
