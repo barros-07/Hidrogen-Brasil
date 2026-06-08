@@ -1,9 +1,20 @@
 document.getElementById("teste").onclick = async () => {
-  const resposta = await fetch("/api/teste");
 
-  const dados = await resposta.json();
+    const resposta = await fetch("/api/teste", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            produto: "Kit Hidrogen",
+            preco: 499.90
+        })
+    });
 
-  console.log(dados);
+    const dados = await resposta.json();
+
+    document.getElementById("resultado").innerText =
+        JSON.stringify(dados, null, 2);
 };
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
