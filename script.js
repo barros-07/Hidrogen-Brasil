@@ -14,8 +14,7 @@ document.getElementById("teste").onclick = async () => {
 
     const dados = await resposta.json();
 
-    document.getElementById("resultado").innerText =
-        JSON.stringify(dados, null, 2);
+    console.log(dados);
 };
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
