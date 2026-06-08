@@ -1,20 +1,13 @@
 //mensagem teste
-document.getElementById("teste").onclick = async () => {
+document.querySelector(".btn-comprar").onclick = async () => {
 
-    const resposta = await fetch("/api/teste", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            produto: "Kit Hidrogen",
-            preco: 499.90
-        })
+    const resposta = await fetch("/api/criar-pagamento", {
+        method: "POST"
     });
 
     const dados = await resposta.json();
 
-    console.log(dados);
+    window.location.href = dados.checkout;
 };
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
