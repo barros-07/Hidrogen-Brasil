@@ -1,3 +1,4 @@
+//mensagem teste
 document.getElementById("teste").onclick = async () => {
 
     const resposta = await fetch("/api/teste", {
