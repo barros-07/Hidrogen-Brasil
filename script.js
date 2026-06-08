@@ -1,13 +1,26 @@
-//mensagem teste
-document.querySelector(".btn-comprar").onclick = async () => {
+//checkout-teste
+const botaoH1 = document.getElementById("comprar-h1");
 
-    const resposta = await fetch("/api/criar-pagamento", {
-        method: "POST"
+if (botaoH1) {
+    botaoH1.addEventListener("click", async (e) => {
+
+        e.preventDefault();
+
+        const resposta = await fetch("/api/criar-pagamento", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                produto: "macarico-h1"
+            })
+        });
+
+        const dados = await resposta.json();
+
+        window.location.href = dados.checkout;
     });
-
-    const dados = await resposta.json();
-
-    window.location.href = dados.checkout;
+}
 };
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
