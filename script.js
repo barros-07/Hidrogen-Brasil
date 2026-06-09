@@ -1,42 +1,35 @@
-// checkout-teste
-async function criarPagamento() {
-  const produto = {
-    nome: "Nome do produto",
-    preco: 100.0,
-    quantidade: 1
-  };
+// checkout do h1 por enquanto
+const botaoH1 = document.getElementById('comprar-h1');
 
-  const resposta = await fetch("/api/criar-pagamento", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ produto })
-  });
+if (botaoH1) {
+    botaoH1.addEventListener('click', async (e) => {
 
-  const data = await resposta.json();
-  if (data.checkout) {
-    window.location.href = data.checkout;
-  } else {
-    alert("Erro ao gerar pagamento");
-  }
+        e.preventDefault();
+
+        const resposta = await fetch('/api/criar-pagamento', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                produto: {
+                    nome: "Maçarico H1",
+                    preco: 2699,
+                    quantidade: 1
+                }
+            })
+        });
+
+        const dados = await resposta.json();
+
+        if (dados.checkout) {
+            window.location.href = dados.checkout;
+        } else {
+            console.error(dados);
+            alert("Erro ao gerar pagamento");
+        }
+    });
 }
-
-document.querySelector("#botaoPagar").addEventListener("click", criarPagamento);
-const botaoH1 = document.getElementById('comprar-h1'); 
-
-if (botaoH1) { 
-    botaoH1.addEventListener('click', async (e) => { 
-        e.preventDefault(); 
-        const resposta = await fetch('/api/criar-pagamento', { 
-            method: 'POST', 
-            headers: { 
-                'Content-Type': 'application/json' 
-            }, 
-            body: JSON.stringify({ produto: 'macarico-h1' }) 
-        }); 
-        const dados = await resposta.json(); 
-        window.location.href = dados.checkout; 
-    }); 
-} // Fechamento correto do 'if'
 
 // Navbar scroll effect
 window.addEventListener('scroll', () => { 

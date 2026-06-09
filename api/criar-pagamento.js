@@ -1,33 +1,39 @@
-import mercadopago from "mercadopago";
+import { MercadoPagoConfig, Preference } from "mercadopago";
 
-mercadopago.configurations.setAccessToken(process.env.MERCADO_PAGO_ACCESS_TOKEN);
+const client = new MercadoPagoConfig({
+  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN
+});
 
 export default async function handler(req, res) {
   try {
+
     const { produto } = req.body;
 
-    const preference = {
-      items: [
-        {
-          title: produto.nome,
-          quantity: produto.quantidade || 1,
-          unit_price: Number(produto.preco),
-          currency_id: "BRL"
-        }
-      ],
-      back_urls: {
-        success: "https://seusite.com/sucesso",
-        failure: "https://seusite.com/falha",
-        pending: "https://seusite.com/pendente"
-      },
-      auto_return: "approved"
-    };
+    const preference = new Preference(client);
 
-    const response = await mercadopago.preferences.create(preference);
+    const response = await preference.create({
+      body: {
+        items: [
+          {
+            title: produto.nome,
+            quantity: produto.quantidade || 1,
+            unit_price: Number(produto.preco)
+          }
+        ]
+      }
+    });
 
-    return res.status(200).json({ checkout: response.body.init_point });
+    return res.status(200).json({
+      checkout: response.init_point
+    });
+
   } catch (error) {
-    console.error("Erro Mercado Pago:", error);
-    return res.status(500).json({ error: "Erro ao criar pagamento" });
+
+    console.error(error);
+
+    return res.status(500).json({
+      erro: error.message
+    });
+
   }
 }
