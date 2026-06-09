@@ -6,6 +6,7 @@ const WPP = '5519995287194';
 // ═══════════════════════════════════════
 // PRODUTOS — Checkout Mercado Pago
 // ═══════════════════════════════════════
+console.log('script.js carregado');
 const produtos = {
   'comprar-h1':           { nome: 'Maçarico H1',                                          preco: 2699 },
   'comprar-h1r':          { nome: 'Maçarico H1R',                                         preco: 4699 },
@@ -21,6 +22,7 @@ const produtos = {
 
 Object.entries(produtos).forEach(([id, produto]) => {
   const botao = document.getElementById(id);
+  console.log('botão encontrado para checkout:', id, !!botao);
   if (!botao) return;
 
   botao.addEventListener('click', async (e) => {
