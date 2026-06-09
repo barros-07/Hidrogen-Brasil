@@ -7,19 +7,9 @@ const WPP = '5519995287194';
 // PRODUTOS — Checkout Mercado Pago
 // ═══════════════════════════════════════
 console.log('script.js carregado');
-// Event delegation: route clicks from product-card to button if clicked on card itself
-document.addEventListener('click', (e) => {
-  const card = e.target.closest('.product-card');
-  if (!card) return;
-  const btn = card.querySelector('a[id^="comprar-"]');
-  if (!btn) return;
-  const id = btn.id;
-  const problemIds = ['comprar-agulhas','comprar-eletrolitos','comprar-borbulhador','comprar-reservatorio','comprar-mangueira'];
-  if (problemIds.includes(id)) {
-    console.log('→ rerouting click from product-card to button:', id);
-    btn.click();
-  }
-}, { capture: true });
+// ═══════════════════════════════════════
+// NO EVENT DELEGATION NEEDED — CSS handles pointer-events
+// ═══════════════════════════════════════
 const produtos = {
   'comprar-h1':           { nome: 'Maçarico H1',                                          preco: 2699 },
   'comprar-h1r':          { nome: 'Maçarico H1R',                                         preco: 4699 },
