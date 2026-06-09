@@ -7,6 +7,25 @@ const WPP = '5519995287194';
 // PRODUTOS — Checkout Mercado Pago
 // ═══════════════════════════════════════
 console.log('script.js carregado');
+// Debug capture for problematic buttons (diagnose missing click logs)
+const _debugProblemIds = ['comprar-agulhas','comprar-eletrolitos','comprar-borbulhador','comprar-reservatorio','comprar-mangueira'];
+document.addEventListener('pointerdown', (e) => {
+  const t = e.target.closest && e.target.closest('a,button') || e.target;
+  if (!t) return;
+  const id = t.id || (t.getAttribute && t.getAttribute('id')) || null;
+  if (_debugProblemIds.includes(id)) {
+    console.log('pointerdown on problem button:', { id, tag: t.tagName, classes: t.className });
+  }
+}, { capture: true });
+document.addEventListener('click', (e) => {
+  const t = e.target.closest && e.target.closest('a,button') || e.target;
+  if (!t) return;
+  const id = t.id || (t.getAttribute && t.getAttribute('id')) || null;
+  console.log('global click', { id, tag: t.tagName, classes: t.className });
+  if (_debugProblemIds.includes(id)) {
+    console.log('PROBLEM BUTTON CLICKED:', id, 'event:', e);
+  }
+}, { capture: true });
 const produtos = {
   'comprar-h1':           { nome: 'Maçarico H1',                                          preco: 2699 },
   'comprar-h1r':          { nome: 'Maçarico H1R',                                         preco: 4699 },
