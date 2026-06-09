@@ -7,23 +7,17 @@ const WPP = '5519995287194';
 // PRODUTOS — Checkout Mercado Pago
 // ═══════════════════════════════════════
 console.log('script.js carregado');
-// Debug capture for problematic buttons (diagnose missing click logs)
-const _debugProblemIds = ['comprar-agulhas','comprar-eletrolitos','comprar-borbulhador','comprar-reservatorio','comprar-mangueira'];
-document.addEventListener('pointerdown', (e) => {
-  const t = e.target.closest && e.target.closest('a,button') || e.target;
-  if (!t) return;
-  const id = t.id || (t.getAttribute && t.getAttribute('id')) || null;
-  if (_debugProblemIds.includes(id)) {
-    console.log('pointerdown on problem button:', { id, tag: t.tagName, classes: t.className });
-  }
-}, { capture: true });
+// Event delegation: route clicks from product-card to button if clicked on card itself
 document.addEventListener('click', (e) => {
-  const t = e.target.closest && e.target.closest('a,button') || e.target;
-  if (!t) return;
-  const id = t.id || (t.getAttribute && t.getAttribute('id')) || null;
-  console.log('global click', { id, tag: t.tagName, classes: t.className });
-  if (_debugProblemIds.includes(id)) {
-    console.log('PROBLEM BUTTON CLICKED:', id, 'event:', e);
+  const card = e.target.closest('.product-card');
+  if (!card) return;
+  const btn = card.querySelector('a[id^="comprar-"]');
+  if (!btn) return;
+  const id = btn.id;
+  const problemIds = ['comprar-agulhas','comprar-eletrolitos','comprar-borbulhador','comprar-reservatorio','comprar-mangueira'];
+  if (problemIds.includes(id)) {
+    console.log('→ rerouting click from product-card to button:', id);
+    btn.click();
   }
 }, { capture: true });
 const produtos = {
