@@ -1,4 +1,26 @@
 // checkout-teste
+async function criarPagamento() {
+  const produto = {
+    nome: "Nome do produto",
+    preco: 100.0,
+    quantidade: 1
+  };
+
+  const resposta = await fetch("/api/criar-pagamento", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ produto })
+  });
+
+  const data = await resposta.json();
+  if (data.checkout) {
+    window.location.href = data.checkout;
+  } else {
+    alert("Erro ao gerar pagamento");
+  }
+}
+
+document.querySelector("#botaoPagar").addEventListener("click", criarPagamento);
 const botaoH1 = document.getElementById('comprar-h1'); 
 
 if (botaoH1) { 
