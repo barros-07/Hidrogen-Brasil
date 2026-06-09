@@ -27,6 +27,7 @@ Object.entries(produtos).forEach(([id, produto]) => {
 
   botao.addEventListener('click', async (e) => {
     e.preventDefault();
+    console.log('checkout request produto:', produto);
 
     try {
       const resposta = await fetch('/api/criar-pagamento', {
@@ -35,13 +36,15 @@ Object.entries(produtos).forEach(([id, produto]) => {
         body: JSON.stringify({ produto: { ...produto, quantidade: 1 } })
       });
 
+      console.log('checkout response status:', resposta.status, resposta.statusText);
       const dados = await resposta.json();
+      console.log('checkout data:', dados);
 
       if (dados.checkout) {
         window.location.href = dados.checkout;
       } else {
         console.error(dados);
-        alert('Erro ao gerar pagamento. Tente pelo WhatsApp.');
+        alert('Erro ao gerar pagamento. Verifique o console.');
       }
     } catch (err) {
       console.error(err);
