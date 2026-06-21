@@ -40,13 +40,21 @@ Object.entries(produtos).forEach(([id, produto]) => {
       });
 
       console.log('checkout response status:', resposta.status, resposta.statusText);
-      const dados = await resposta.json();
+      const texto = await resposta.text();
+      console.log('checkout response body:', texto);
+
+      let dados = {};
+      try {
+        dados = texto ? JSON.parse(texto) : {};
+      } catch (err) {
+        console.error('Resposta não é JSON:', err);
+      }
       console.log('checkout data:', dados);
 
-      if (dados.checkout) {
+      if (resposta.ok && dados.checkout) {
         window.location.href = dados.checkout;
       } else {
-        console.error(dados);
+        console.error('checkout falhou', { status: resposta.status, body: texto, dados });
         alert('Erro ao gerar pagamento. Verifique o console.');
       }
     } catch (err) {
