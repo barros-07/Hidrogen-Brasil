@@ -32,9 +32,11 @@ export default async function handler(req, res) {
       checkout: response?.body?.init_point || null
     });
   } catch (error) {
-    console.error("Erro ao criar preferência:", error);
+    const detalhe = error?.response?.data || error?.cause || null;
+    console.error("Erro ao criar preferência:", detalhe || error);
     return res.status(500).json({
-      erro: error?.message || "Erro interno ao criar checkout."
+      erro: error?.message || "Erro interno ao criar checkout.",
+      detalhes: detalhe
     });
   }
 }
