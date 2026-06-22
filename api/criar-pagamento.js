@@ -5,6 +5,7 @@ const client = new MercadoPagoConfig({
 });
 
 export default async function handler(req, res) {
+  console.log('token:', process.env.MERCADO_PAGO_ACCESS_TOKEN?.slice(0, 10))
   try {
     const { produto } = req.body || {};
 
@@ -29,7 +30,7 @@ export default async function handler(req, res) {
     });
 
     return res.status(200).json({
-      checkout: response?.body?.init_point || null
+      checkout: response?.init_point || null
     });
   } catch (error) {
     const detalhe = error?.response?.data || error?.cause || null;
