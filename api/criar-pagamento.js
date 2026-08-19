@@ -52,7 +52,7 @@ const PRODUTOS = {
 
 export default async function handler(req, res) {
   try {
-    const { produto } = req.body || {};
+    const { produto, comprador } = req.body || {};
 
     if (!produto || !produto.nome || !produto.preco) {
       return res.status(400).json({ erro: "Dados do produto inválidos." });
@@ -63,28 +63,48 @@ export default async function handler(req, res) {
     const preference = new Preference(client);
 
     const response = await preference.create({
-      body: {
-        items: [
-          {
-            title: produto.nome,
-            description: extra.descricao || produto.nome,
-            picture_url: extra.imagem || null,
-            quantity: Number(produto.quantidade || 1),
-            unit_price: Number(produto.preco),
-            currency_id: 'BRL',
-          }
-        ],
-        back_urls: {
-          success: `${BASE_URL}/?status=sucesso`,
-          failure: `${BASE_URL}/?status=falha`,
-          pending: `${BASE_URL}/?status=pendente`,
-        },
-        auto_return: 'approved',
-        external_reference: `HB-${Date.now()}`,
-        expires: true,
-        expiration_date_to: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+  body: {
+    items: [
+      {
+        title: produto.nome,
+        description: extra.descricao || produto.nome,
+        picture_url: extra.imagem || null,
+        quantity: Number(produto.quantidade || 1),
+        unit_price: Number(produto.preco),
+        currency_id: 'BRL',
       }
-    });
+    ],
+    back_urls: {
+      success: `${BASE_URL}/?status=sucesso`,
+      failure: `${BASE_URL}/?status=falha`,
+      pending: `${BASE_URL}/?status=pendente`,
+    },
+    auto_return: 'approved',
+    external_reference: `HB-${Date.now()}`,
+    expires: true,
+    expiration_date_to: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+    payer: comprador ? {
+      name: comprador.nome.split(' ')[0],
+      surname: comprador.nome.split(' ').slice(1).join(' '),
+      email: comprador.email,
+      address: {
+        zip_code: comprador.cep.replace('-', ''),
+        street_name: comprador.rua,
+        street_number: Number(comprador.numero) || 0,
+      }
+    } : undefined,
+    shipments: comprador ? {
+      receiver_address: {
+        zip_code: comprador.cep.replace('-', ''),
+        street_name: comprador.rua,
+        street_number: Number(comprador.numero) || 0,
+        apartment: comprador.complemento || '',
+        city_name: comprador.cidade,
+        state_name: comprador.estado,
+      }
+    } : undefined,
+  }
+});
 
     return res.status(200).json({ checkout: response?.init_point || null });
 
