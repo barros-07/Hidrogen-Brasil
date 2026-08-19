@@ -197,4 +197,50 @@ document.querySelectorAll('.product-card, .kit-card, .benefit-card, .testimonial
     var dots = document.querySelectorAll('#car-' + id + '-dots .prod-carousel-dot');
     dots.forEach(function(d, i) { d.classList.toggle('active', i === s.cur); });
   }
+})
+// ═══════════════════════════════════════
+// STATUS PÓS-PAGAMENTO
+// ═══════════════════════════════════════
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('status');
+  if (!status) return;
+
+  const mensagens = {
+    sucesso: { texto: '✅ Pagamento aprovado! Em breve entraremos em contato para combinar a entrega.', cor: 'var(--c-green)' },
+    falha:   { texto: '❌ Pagamento não aprovado. Tente novamente ou fale conosco pelo WhatsApp.', cor: '#ff6b6b' },
+    pendente:{ texto: '⏳ Pagamento pendente. Assim que confirmado, entraremos em contato.', cor: 'var(--c-gold)' },
+  };
+
+  const m = mensagens[status];
+  if (!m) return;
+
+  const banner = document.createElement('div');
+  banner.style.cssText = `
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--c-navy-mid);
+    border: 1px solid ${m.cor};
+    color: var(--c-white);
+    padding: 16px 28px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-family: var(--font-body);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    z-index: 3000;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+  `;
+  banner.textContent = m.texto;
+
+  document.body.appendChild(banner);
+
+  // remove após 6 segundos
+  setTimeout(() => banner.remove(), 6000);
+
+  // limpa o ?status= da URL sem recarregar
+  window.history.replaceState({}, '', window.location.pathname);
 })();
