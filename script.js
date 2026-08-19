@@ -232,7 +232,7 @@ document.querySelectorAll('.product-card, .kit-card, .benefit-card, .testimonial
 // ═══════════════════════════════════════
 // STATUS PÓS-PAGAMENTO
 // ═══════════════════════════════════════
-(function() {
+;(function() {
   const params = new URLSearchParams(window.location.search);
   const status = params.get('status');
   if (!status) return;
