@@ -23,44 +23,75 @@ const produtos = {
   'comprar-kit3':         { nome: 'Kit 3 — Borbulhador + Reservatório + Mangueira + 5 Agulhas + 10 Eletrólitos', preco: 500 },
 };
 
+// ═══════════════════════════════════════
+// CHECKOUT COM MODAL DE ENDEREÇO
+// ═══════════════════════════════════════
+let produtoSelecionado = null;
+
+function abrirModal(produto) {
+  produtoSelecionado = produto;
+  document.getElementById('modal-endereco').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharModal() {
+  document.getElementById('modal-endereco').style.display = 'none';
+  document.body.style.overflow = '';
+  produtoSelecionado = null;
+}
+
+document.getElementById('modal-btn-confirmar').addEventListener('click', async () => {
+  const nome        = document.getElementById('m-nome').value.trim();
+  const email       = document.getElementById('m-email').value.trim();
+  const cep         = document.getElementById('m-cep').value.trim();
+  const rua         = document.getElementById('m-rua').value.trim();
+  const numero      = document.getElementById('m-numero').value.trim();
+  const complemento = document.getElementById('m-complemento').value.trim();
+  const cidade      = document.getElementById('m-cidade').value.trim();
+  const estado      = document.getElementById('m-estado').value.trim();
+  const erro        = document.getElementById('modal-erro');
+
+  if (!nome || !email || !cep || !rua || !numero || !cidade || !estado) {
+    erro.style.display = 'block';
+    return;
+  }
+  erro.style.display = 'none';
+
+  const btn = document.getElementById('modal-btn-confirmar');
+  btn.textContent = 'Aguarde...';
+  btn.disabled = true;
+
+  try {
+    const resposta = await fetch('/api/criar-pagamento', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        produto: { ...produtoSelecionado, quantidade: 1 },
+        comprador: { nome, email, cep, rua, numero, complemento, cidade, estado }
+      })
+    });
+
+    const dados = await resposta.json();
+
+    if (resposta.ok && dados.checkout) {
+      window.location.href = dados.checkout;
+    } else {
+      alert('Erro ao gerar pagamento. Tente pelo WhatsApp.');
+    }
+  } catch (err) {
+    alert('Erro ao conectar. Tente pelo WhatsApp.');
+  }
+
+  btn.textContent = 'Ir para pagamento →';
+  btn.disabled = false;
+});
+
 Object.entries(produtos).forEach(([id, produto]) => {
   const botao = document.getElementById(id);
-  console.log('botão encontrado para checkout:', id, !!botao);
   if (!botao) return;
-
-  botao.addEventListener('click', async (e) => {
+  botao.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('checkout request produto:', produto);
-
-    try {
-      const resposta = await fetch('/api/criar-pagamento', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ produto: { ...produto, quantidade: 1 } })
-      });
-
-      console.log('checkout response status:', resposta.status, resposta.statusText);
-      const texto = await resposta.text();
-      console.log('checkout response body:', texto);
-
-      let dados = {};
-      try {
-        dados = texto ? JSON.parse(texto) : {};
-      } catch (err) {
-        console.error('Resposta não é JSON:', err);
-      }
-      console.log('checkout data:', dados);
-
-      if (resposta.ok && dados.checkout) {
-        window.location.href = dados.checkout;
-      } else {
-        console.error('checkout falhou', { status: resposta.status, body: texto, dados });
-        alert('Erro ao gerar pagamento. Verifique o console.');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Erro ao conectar. Tente pelo WhatsApp.');
-    }
+    abrirModal(produto);
   });
 });
 
