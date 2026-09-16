@@ -52,6 +52,10 @@ const PRODUTOS = {
 
 export default async function handler(req, res) {
   try {
+    if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
+      return res.status(500).json({ erro: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
+    }
+
     const { produto, comprador } = req.body || {};
 
     if (!produto || !produto.nome || !produto.preco) {
@@ -106,7 +110,9 @@ export default async function handler(req, res) {
   }
 });
 
-    return res.status(200).json({ checkout: response?.init_point || null });
+    return res.status(200).json({
+      checkout: response?.sandbox_init_point || response?.init_point || null
+    });
 
   } catch (error) {
     const detalhe = error?.response?.data || error?.cause || null;
