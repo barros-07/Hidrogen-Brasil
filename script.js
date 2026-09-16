@@ -11,8 +11,8 @@ console.log('script.js carregado');
 // NO EVENT DELEGATION NEEDED — CSS handles pointer-events
 // ═══════════════════════════════════════
 const produtos = {
-  'comprar-h1':           { nome: 'Maçarico H1',                                          preco: 2699 },
-  'comprar-h1r':          { nome: 'Maçarico H1R',                                         preco: 4699 },
+  'comprar-h1':           { nome: 'Maçarico H1',                                          preco: 3299 },
+  'comprar-h1r':          { nome: 'Maçarico H1R',                                         preco: 5299 },
   'comprar-agulhas':      { nome: 'Agulhas (5 unidades)',                                  preco: 100  },
   'comprar-eletrolitos':  { nome: 'Eletrólitos (10 unidades)',                             preco: 120  },
   'comprar-borbulhador':  { nome: 'Borbulhador',                                           preco: 120  },
