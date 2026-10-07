@@ -18,7 +18,6 @@
 
   <link rel="canonical" href="https://hidrogen.com.br">
 
-  <link rel="icon" type="image/png" href="imagem/icon-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,6 +59,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="toggleMenu()">✕</button>
   <a href="#macaricos" onclick="toggleMenu()">Maçaricos</a>
+  <a href="#por-que-hidrogen" onclick="toggleMenu()">Por que Hidrogen</a>
   <a href="#produtos" onclick="toggleMenu()">Peças & Kits</a>
   <a href="#sobre" onclick="toggleMenu()">Sobre</a>
   <a href="#depoimentos" onclick="toggleMenu()">Depoimentos</a>
@@ -73,72 +73,56 @@
 <!-- ╔═══════════════════════════════════╗ -->
 <!-- ║              HERO                 ║ -->
 <!-- ╚═══════════════════════════════════╝ -->
-<section id="hero" class="hero-section">
+<section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  
   <div class="container">
     <div class="hero-inner">
-      
-      <!-- Coluna de Conteúdo (Esquerda) -->
-      <div class="hero-content">
-        
-        <div class="hero-badge">Fabricante Oficial · Desde 2017</div>
-        
-        <div class="hero-brand-wrapper">
-          <img src="imagem/logo-hidrogen-trans.png" alt="Hidrogen Logo" class="hero-brand-logo">
-        </div>
-
+    <div class="hero-content">
+      <div class="hero-badge">Fabricante Oficial · Desde 2017</div>
+      <h1>
+        <span class="hero-brand">Hidrogen</span>
         <span class="hero-tagline-small">Alta Performance em Chama de Hidrogênio</span>
-        
-        <h1 class="hero-title">
-          Maçaricos de Hidrogênio
-        </h1>
-        
-        <p class="hero-sub">
-          Tecnologia limpa, precisão profissional e segurança certificada. Fabricação nacional para ourives, laboratórios de prótese, óticas e indústrias.
-        </p>
-
-        <div class="hero-btns">
-          <a href="#macaricos" class="btn btn-primary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            Ver Maçaricos
-          </a>
-          
-          <a href="https://wa.me/5519995287194?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" class="btn btn-wpp">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Falar no WhatsApp
-          </a>
-        </div>
-
-        <!-- Estatísticas Organizadas -->
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="hero-stat-num">3.000+</div>
-            <div class="hero-stat-label">Clientes atendidos</div>
-          </div>
-          <div class="stat-item">
-            <div class="hero-stat-num">2.800°C</div>
-            <div class="hero-stat-label">Temperatura da chama</div>
-          </div>
-          <div class="stat-item">
-            <div class="hero-stat-num">70%</div>
-            <div class="hero-stat-label">Economia vs GLP</div>
-          </div>
-        </div>
-
+        <span class="hero-title">Maçaricos de Hidrogênio<br>
+      </h1>
+      <p class="hero-sub">
+        Tecnologia limpa, precisão profissional e segurança certificada. Fabricação nacional para ourives, laboratórios de prótese, óticas e indústrias.
+      </p>
+      <div class="hero-btns">
+        <a href="#macaricos" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Ver Maçaricos
+        </a>
+        <a href="https://wa.me/5519995287194?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" class="btn btn-wpp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar no WhatsApp
+        </a>
       </div>
-
-      <!-- Coluna do Produto (Direita) -->
-      <div class="hero-product-showcase">
-        <div class="hero-product-main">  
-          <img src="imagem/maçarico-na-estante-frontal.webp" alt="Máquina Hidrogen em uso na joalheria">
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">3.000+</div>
+          <div class="hero-stat-label">Clientes atendidos</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">2.800°C</div>
+          <div class="hero-stat-label">Temperatura da chama</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">70%</div>
+          <div class="hero-stat-label">Economia vs GLP/Acetileno</div>
         </div>
       </div>
-
+    </div>
+    <!-- Product Showcase -->
+    <div class="hero-product-showcase">
+      <div class="hero-product-main"> 
+        <img src="imagem/maçarico-na-estante-frontal.webp" alt="Máquina Hidrogen em uso na joalheria">
+      </div>
+    </div>
     </div><!-- /hero-inner -->
   </div>
 </section>
+
 <!-- ╔═══════════════════════════════════╗ -->
 <!-- ║           TRUST BAR               ║ -->
 <!-- ╚═══════════════════════════════════╝ -->
@@ -160,6 +144,10 @@
       <div class="trust-item">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
         Eletrólito Próprio · Sem Substâncias Nocivas
+      </div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        +3.000 Clientes Satisfeitos
       </div>
     </div>
   </div>
@@ -207,8 +195,8 @@
           </div>
 
           <div class="macarico-safety">
-            <div class="macarico-safety-icon">🔥</div>
-            <div><strong>BAIXA DEMANDA</strong> Não armazena gás. Livre de restrições de Bombeiros, Vigilância Sanitária e Condomínios. Ideal para uso em locais fechados.</div>
+            <div class="macarico-safety-icon">🛡️</div>
+            <div><strong>Maquinário Seguro:</strong> Não armazena gás. Livre de restrições de Bombeiros, Vigilância Sanitária e Condomínios. Ideal para uso em locais fechados.</div>
           </div>
           <div class="macarico-apps">
             <div class="macarico-apps-title">Aplicações recomendadas</div>
@@ -261,14 +249,14 @@
           </div>
 
           <div class="macarico-safety">
-            <div class="macarico-safety-icon">🔥</div>
-            <div><strong>ALTA DEMANDA</strong> Sem tanques pressurizados — não sofre restrições de Bombeiros, ANVISA ou Condomínio. Trabalhe dentro das normas sem alvarás complexos.</div>
+            <div class="macarico-safety-icon">🛡️</div>
+            <div><strong>Ideal para Shoppings, Prédios e Clínicas:</strong> Sem tanques pressurizados — não sofre restrições de Bombeiros, ANVISA ou Condomínio. Trabalhe dentro das normas sem alvarás complexos.</div>
           </div>
           <div class="macarico-apps">
             <div class="macarico-apps-title">Aplicações recomendadas</div>
             <div class="macarico-app-tags">
               <span class="macarico-app-tag">Ourives Avançado</span>
-              <span class="macarico-app-tag">Laboratórios Ópticos</span>
+              <span class="macarico-app-tag">Laboratórios de Prótese</span>
               <span class="macarico-app-tag">Óticas Alto Volume</span>
               <span class="macarico-app-tag">Shoppings & Clínicas</span>
             </div>
@@ -296,7 +284,7 @@
         <strong style="color:var(--c-cyan);display:block;margin-bottom:4px;">Segurança em ambos os modelos</strong>
         <span style="font-size:14px;color:var(--c-white-70);line-height:1.6;">
           Não armazena gás. Livre de restrições de Bombeiros, Vigilância Sanitária e Condomínios.
-          Sistema triplo: anti-chama + válvula de espera + borbulhador. Ideal para locais fechados, óticas, prédios e clínicas.
+          Sistema triplo: anti-chama + válvula de espera + borbulhador. Ideal para locais fechados, shoppings, prédios e clínicas.
         </span>
       </div>
     </div>
@@ -323,7 +311,7 @@
       <div class="comp-benefit-item" style="background:rgba(255,255,255,0.04);border-radius:12px;padding:18px;text-align:center;">
         <div style="font-size:22px;margin-bottom:8px;">🔧</div>
         <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Manutenção simples</div>
-        <div style="font-size:12px;color:var(--c-white-70);">A cada 15–20 dias · 3 meses de garantia · Assistência própria</div>
+        <div style="font-size:12px;color:var(--c-white-70);">A cada 15–30 dias · 3 meses de garantia · Assistência própria</div>
       </div>
     </div>
 
@@ -364,8 +352,8 @@
           <td style="padding:13px 16px;text-align:center;font-weight:600;background:rgba(212,170,60,0.04);">Prótese, Shoppings, Alto volume</td>
         </tr>
         <tr style="border-top:1px solid rgba(255,255,255,0.06);">
-          <td style="padding:13px 16px;color:var(--c-white-70);">Limpeza</td>
-          <td style="padding:13px 16px;text-align:center;font-weight:600;">A cada 15–20 dias</td>
+          <td style="padding:13px 16px;color:var(--c-white-70);">Manutenção</td>
+          <td style="padding:13px 16px;text-align:center;font-weight:600;">A cada 15–30 dias</td>
           <td style="padding:13px 16px;text-align:center;font-weight:600;background:rgba(212,170,60,0.04);">A cada 15–30 dias</td>
         </tr>
         <tr style="border-top:1px solid rgba(255,255,255,0.06);">
@@ -387,12 +375,29 @@
   </div>
 </section>
 
-<!-- ╔══════════════════════════════════════════════╗ -->
-<!-- ║   POR QUE HIDROGEN — v5                      ║ -->
-<!-- ║   Cards esquerda / Lista direita, alinhados   ║ -->
-<!-- ╚══════════════════════════════════════════════╝ -->
+</section>
+  <div>  <!-- Imagem institucional -->
+      </div>
+        <div class="inst-image-wrapper" aria-hidden="true">
+          <div class="inst-image-glow"></div>
+          <div class="inst-image-container">
+            <img
+                src="imagem/pro-usando-maça.webp"
+                alt="Profissional utilizando maçarico Hidrogen Brasil"
+                class="inst-image"
+                loading="lazy"
+                width="800" height="360"
+              />
+          </div>
+          <div class="inst-image-overlay"></div>
+        </div>
  
-
+      </article>
+ 
+    </div><!-- /inst-grid -->
+ 
+  </div><!-- /container -->
+</section>
  
  
  
@@ -613,7 +618,45 @@
 <!-- ╔═══════════════════════════════════╗ -->
 <!-- ║           BENEFÍCIOS              ║ -->
 <!-- ╚═══════════════════════════════════╝ -->
-
+<section id="beneficios" class="section">
+  <div class="container">
+    <div class="tag">Por que escolher</div>
+    <h2 class="section-title">Vantagens de comprar<br>na <span class="text-cyan">HidrogenBrasil</span></h2>
+    <p class="section-sub">Não somos só mais uma loja. Somos especialistas em sistemas Hidrogen, com produtos selecionados e atendimento humano.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:var(--c-cyan-dim);">🏆</div>
+        <div class="benefit-title">Peças Selecionadas</div>
+        <div class="benefit-text">Cada produto passa por critérios rigorosos de qualidade antes de chegar até você. Só trabalhamos com o que recomendaríamos ao nosso próprio sistema.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:var(--c-green-dim);">⚡</div>
+        <div class="benefit-title">Atendimento Rápido</div>
+        <div class="benefit-text">Fale conosco pelo WhatsApp e receba resposta em minutos. Sem chatbot, sem fila. Atendimento humano e especializado.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:var(--c-gold-dim);">📦</div>
+        <div class="benefit-title">Envio para Todo o Brasil</div>
+        <div class="benefit-text">Despachamos para qualquer estado do país. Informe seu CEP e calculamos o frete na hora — sem surpresas na hora de pagar.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:rgba(168,85,247,0.15);">💡</div>
+        <div class="benefit-title">Suporte Técnico</div>
+        <div class="benefit-text">Além de vender, orientamos sobre instalação e uso correto das peças. Nossa equipe conhece o sistema Hidrogen de ponta a ponta.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:rgba(239,68,68,0.1);">❤️</div>
+        <div class="benefit-title">Satisfação Garantida</div>
+        <div class="benefit-text">Seu pedido chegou com problema? Resolvemos. Sua satisfação é nossa prioridade e zelar pela nossa reputação faz parte de cada venda.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:var(--c-cyan-dim);">💰</div>
+        <div class="benefit-title">Melhor Preço em Kits</div>
+        <div class="benefit-text">Nossos kits oferecem até R$110 de desconto em relação à compra separada. Inteligente para quem precisa de mais de uma peça.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!-- ╔═══════════════════════════════════╗ -->
@@ -625,7 +668,18 @@
     <h2 class="section-title">O que nossos <span class="text-cyan">clientes dizem</span></h2>
     <p class="section-sub">A melhor prova de qualidade vem de quem já comprou e aprovou.</p>
     <div class="testimonials-grid" style="text-align:left;">
-<div class="testimonial-card">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Comprei o Kit 3 completo e ficou perfeito. Atendimento super rápido no WhatsApp, responderam todas minhas dúvidas e o produto chegou bem embalado."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MR</div>
+          <div>
+            <div class="author-name">Marcos R.</div>
+            <div class="author-city">São Paulo, SP</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
         <div class="stars">★★★★★</div>
         <p class="testimonial-text">"Precisava das agulhas com urgência. Entrei em contato, negociei o frete e no dia seguinte já tinha o rastreio. Empresa séria, recomendo muito!"</p>
         <div class="testimonial-author">
@@ -633,6 +687,28 @@
           <div>
             <div class="author-name">João C.</div>
             <div class="author-city">Curitiba, PR</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Compro regularmente os eletrólitos e o borbulhador. Qualidade constante, preço justo e sempre tratam a gente bem. Virei cliente fiel."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AS</div>
+          <div>
+            <div class="author-name">Ana S.</div>
+            <div class="author-city">Belo Horizonte, MG</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Já testei outras fornecedoras. A HidrogenBrasil tem o melhor preço de kit e o atendimento é diferenciado. Eles realmente entendem do sistema."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">PT</div>
+          <div>
+            <div class="author-name">Paulo T.</div>
+            <div class="author-city">Fortaleza, CE</div>
           </div>
         </div>
       </div>
@@ -660,14 +736,27 @@
       </div>
     </div>
   </div>
-</section></div>
-    </div>
 </section>
 
 <!-- ╔═══════════════════════════════════╗ -->
 <!-- ║           CTA BANNER              ║ -->
 <!-- ╚═══════════════════════════════════╝ -->
-
+<div id="cta-banner">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="tag" style="margin:0 auto 16px;">Comece Agora</div>
+      <h2 class="cta-title">Chama limpa de <span class="text-cyan">2.800°C</span><br>para o seu negócio</h2>
+      <p class="cta-sub">Mais de 3.000 profissionais já escolheram a Hidrogen Brasil. Fale agora e descubra qual modelo é ideal para o seu volume de trabalho.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/5519995287194?text=Ol%C3%A1!%20Tenho%20interesse%20nos%20ma%C3%A7aricos%20Hidrogen%20Brasil.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-wpp" style="font-size:17px;padding:18px 36px;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar com Especialista no WhatsApp
+        </a>
+        <a href="#macaricos" class="btn btn-outline" style="font-size:17px;padding:18px 36px;">Ver os Maçaricos</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ╔═══════════════════════════════════╗ -->
 <!-- ║           CAPTURA DE LEADS        ║ -->
@@ -725,38 +814,63 @@
   <div class="container">
     <div class="about-grid">
 
-      <!-- Imagem -->
       <div class="about-image">
-        <img src="imagem/empresa-hidrogen.webp" alt="Fábrica Hidrogen Brasil" style="width:100%;border-radius:16px;object-fit:cover;">
+        <img src="imagem/empresa-hidrogen.webp" alt="Fábrica Hidrogen Brasil">
+        <div class="about-image-caption">
+          <span class="about-image-dot"></span>
+          Engenharia própria, produção brasileira
+        </div>
       </div>
 
-      <!-- Conteúdo -->
-      <div>
+      <div class="about-content">
         <div class="tag">Sobre a empresa</div>
-        <h2 class="section-title">A <span class="text-cyan">Hidrogen Brasil</span></h2>
-        <p style="font-size:16px;color:var(--c-white-70);line-height:1.8;margin-bottom:32px;">
-          Fundada em 2017 com foco em tecnologia limpa e segurança industrial, a Hidrogen Brasil fabrica maçaricos de precisão com eletrólito próprio — sem substâncias nocivas à saúde. Pioneira no desenvolvimento de geradores de hidrogênio por eletrólise sob demanda, a marca transforma água em chamas potentes de até 2800°C, eliminando a necessidade de cilindros e botijões inflamáveis no ambiente de trabalho. É tecnologia brasileira levando mais segurança, economia zero gás e precisão absoluta para a bancada de profissionais exigentes.
+        <h2 class="section-title">Tecnologia limpa para quem exige <span class="text-cyan">precisão.</span></h2>
+        <p class="about-intro">
+          Fundada em 2017 com foco em tecnologia limpa e segurança industrial, a Hidrogen Brasil fabrica maçaricos de precisão com eletrólito próprio — sem substâncias nocivas à saúde. Tudo desenvolvido internamente, do componente à agulha.
         </p>
 
-        <!-- Números -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px;">
-          <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:12px;padding:16px 8px;text-align:center;">
-            <div style="font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--c-cyan);">3.000+</div>
-            <div style="font-size:11px;color:var(--c-white-70);margin-top:4px;">Clientes atendidos</div>
+        <div class="about-stats" aria-label="Números da Hidrogen Brasil">
+          <div class="about-stat">
+            <div class="about-stat-value">3.000<span>+</span></div>
+            <div class="about-stat-label">Clientes atendidos</div>
           </div>
-          <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:12px;padding:16px 8px;text-align:center;">
-            <div style="font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--c-cyan);">100%</div>
-            <div style="font-size:11px;color:var(--c-white-70);margin-top:4px;">Satisfação garantida</div>
+          <div class="about-stat">
+            <div class="about-stat-value">100<span>%</span></div>
+            <div class="about-stat-label">Satisfação garantida</div>
           </div>
-          <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:12px;padding:16px 8px;text-align:center;">
-            <div style="font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--c-cyan);">27</div>
-            <div style="font-size:11px;color:var(--c-white-70);margin-top:4px;">Estados atendidos</div>
+          <div class="about-stat">
+            <div class="about-stat-value">27</div>
+            <div class="about-stat-label">Estados atendidos</div>
           </div>
-          <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:12px;padding:16px 8px;text-align:center;">
-            <div style="font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--c-cyan);">Desde 2019</div>
-            <div style="font-size:11px;color:var(--c-white-70);margin-top:4px;">No mercado</div>
+          <div class="about-stat">
+            <div class="about-stat-value">2019</div>
+            <div class="about-stat-label">Produção própria</div>
           </div>
         </div>
+
+        <div class="about-values">
+          <div class="about-value">
+            <div class="about-value-icon">🌿</div>
+            <div class="about-value-title">Tecnologia Limpa</div>
+            <div class="about-value-text">Sem substâncias nocivas. Seguro para operadores e para o meio ambiente.</div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon">🔬</div>
+            <div class="about-value-title">Eletrólito Próprio</div>
+            <div class="about-value-text">Formulado internamente, com rastreabilidade total e sem produtos prejudiciais à saúde.</div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon">🏭</div>
+            <div class="about-value-title">Fabricação Própria</div>
+            <div class="about-value-text">Controle total desde 2019. Assistência técnica direto de fábrica.</div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon">🤝</div>
+            <div class="about-value-title">Atendimento Humano</div>
+            <div class="about-value-text">Suporte via WhatsApp, sem robô. Preço claro e transparente.</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -776,13 +890,26 @@
           <div class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
         <div class="faq-answer"><div class="faq-answer-inner">Escolha o produto ou kit, clique em "Comprar" e preencha seus dados de entrega. O pagamento é processado pelo Mercado Pago com total segurança. Assim que confirmado, preparamos o envio.</div></div>        </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Quais são as formas de pagamento?
+          <div class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">Aceitamos cartão de crédito (H1 em até 8x e H1R em até 10x, com juros da operadora), Pix e boleto — tudo processado pelo Mercado Pago.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
           Quanto tempo leva para receber meu pedido?
           <div class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
-        <div class="faq-answer"><div class="faq-answer-inner">De 7 a 10 dias úteis para fazer o envio. Você receberá o código de rastreio assim que o produto for postado.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">O H1 é despachado em até 7 dias úteis após a confirmação do pagamento. O H1R em até 10 dias úteis. Você receberá o código de rastreio assim que o produto for postado.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Como é calculado o frete?
+          <div class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">O frete é calculado com base no seu CEP e no peso do pedido. Para calcular, basta nos enviar seu CEP pelo WhatsApp antes de fechar o pedido.</div></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
@@ -800,7 +927,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          Vocês têm Instagram?
+          Vocês têm Instagram? Posso ver fotos dos produtos?
           <div class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
         <div class="faq-answer"><div class="faq-answer-inner">Sim! Temos Instagram onde compartilhamos fotos dos produtos, novidades e depoimentos de clientes. Você pode nos encontrar como @hidrogenbrasil. Também pode pedir fotos dos produtos específicos via WhatsApp antes de comprar.</div></div>
@@ -955,6 +1082,35 @@
   </a>
 </div>
 
-<script src="script.js"></script>
+<!-- MODAL ENDEREÇO -->
+<div id="modal-endereco" style="display:none;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;background:rgba(5,10,20,0.85);backdrop-filter:blur(12px);">
+  <div style="background:var(--c-navy-mid);border:1px solid rgba(0,212,255,0.2);border-radius:var(--radius-lg);padding:40px;width:100%;max-width:480px;margin:24px;box-shadow:0 0 60px rgba(0,212,255,0.08);position:relative;">
+    <button onclick="fecharModal()" style="position:absolute;top:16px;right:20px;background:none;border:none;color:var(--c-white-40);font-size:24px;cursor:pointer;">✕</button>
+    <div class="tag">Entrega</div>
+    <h3 style="font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;">Dados para entrega</h3>
+    <p style="color:var(--c-white-70);font-size:14px;margin-bottom:28px;">Preencha para finalizar sua compra.</p>
+
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <input id="m-nome" type="text" placeholder="Nome completo" style="background:var(--c-white-10);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 16px;color:var(--c-white);font-family:var(--font-body);font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(0,212,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      <input id="m-email" type="email" placeholder="E-mail" style="background:var(--c-white-10);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 16px;color:var(--c-white);font-family:var(--font-body);font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(0,212,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      <input id="m-cep" type="text" placeholder="CEP" maxlength="9" style="background:var(--c-white-10);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 16px;color:var(--c-white);font-family:var(--font-body);font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(0,212,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      <div style="display:flex;gap:10px;">
+        <input id="m-rua" type="text" placeholder="Rua" style="flex:1;background:var(--c-white-10);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 16px;color:var(--c-white);font-family:var(--font-body);font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(0,212,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        <input id="m-numero" type="text" placeholder="Nº" style="width:80px;background:var(--c-white-10);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 16px;color:var(--c-white);font-family:var(--font-body);font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(0,212,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+      <input id="m-complemento" type="text" placeholder="Complemento (opcional)" style="background:var(--c-white-10);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 16px;color:var(--c-white);font-family:var(--font-body);font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(0,212,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      <div style="display:flex;gap:10px;">
+        <input id="m-cidade" type="text" placeholder="Cidade" style="flex:1;background:var(--c-white-10);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 16px;color:var(--c-white);font-family:var(--font-body);font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(0,212,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        <input id="m-estado" type="text" placeholder="UF" maxlength="2" style="width:70px;background:var(--c-white-10);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:14px 16px;color:var(--c-white);font-family:var(--font-body);font-size:15px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(0,212,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+    </div>
+
+    <button id="modal-btn-confirmar" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:24px;">
+      Ir para pagamento →
+    </button>
+    <p id="modal-erro" style="color:#ff6b6b;font-size:13px;text-align:center;margin-top:12px;display:none;">Preencha todos os campos obrigatórios.</p>
+  </div>
+  <script src="script.js"></script>
+</div>
 </body>
 </html>
