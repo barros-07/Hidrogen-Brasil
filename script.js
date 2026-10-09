@@ -13,14 +13,15 @@ console.log('script.js carregado');
 const produtos = {
   'comprar-h1':           { nome: 'Maçarico H1',                                          preco: 3299 },
   'comprar-h1r':          { nome: 'Maçarico H1R',                                         preco: 5299 },
-  'comprar-agulhas':      { nome: 'Agulhas (5 unidades)',                                  preco: 100  },
-  'comprar-eletrolitos':  { nome: 'Eletrólitos (10 unidades)',                             preco: 120  },
-  'comprar-borbulhador':  { nome: 'Borbulhador',                                           preco: 120  },
-  'comprar-reservatorio': { nome: 'Reservatório',                                          preco: 120  },
-  'comprar-mangueira':    { nome: 'Mangueira Completa',                                    preco: 150  },
-  'comprar-kit1':         { nome: 'Kit 1 — Borbulhador + Reservatório + Mangueira',        preco: 350  },
-  'comprar-kit2':         { nome: 'Kit 2 — 5 Agulhas + 10 Eletrólitos',                   preco: 200  },
-  'comprar-kit3':         { nome: 'Kit 3 — Borbulhador + Reservatório + Mangueira + 5 Agulhas + 10 Eletrólitos', preco: 500 },
+  'comprar-agulhas':      { nome: 'Agulhas (5 unidades)',                                  preco: 120  },
+  'comprar-eletrolitos':  { nome: 'Eletrólitos (10 unidades)',                             preco: 150  },
+  'comprar-borbulhador':  { nome: 'Borbulhador',                                           preco: 150  },
+  'comprar-reservatorio': { nome: 'Reservatório',                                          preco: 150  },
+  'comprar-mangueira':    { nome: 'Mangueira Completa',                                    preco: 200  },
+  'comprar-tampa-reservatorio': { nome: 'Tampa do reservatório',                           preco: 30   },
+  'comprar-kit1':         { nome: 'Kit 02 — Estrutural (Borbulhador + Reservatório + Mangueira)', preco: 400 },
+  'comprar-kit2':         { nome: 'Kit 01 — Reposição (5 Agulhas + 10 Eletrólitos)',       preco: 250  },
+  'comprar-kit3':         { nome: 'Kit 03 — Completo (Borbulhador + Reservatório + Mangueira + 5 Agulhas + 10 Eletrólitos)', preco: 550 },
 };
 
 // ═══════════════════════════════════════
@@ -70,14 +71,14 @@ Object.entries(produtos).forEach(([id, produto]) => {
 const wppTextos = {
   'wpp-h1':           'Olá! Tenho interesse no Maçarico H1 (R$2.699,00). Meu CEP é: ',
   'wpp-h1r':          'Olá! Tenho interesse no Maçarico H1R (R$4.699,00). Meu CEP é: ',
-  'wpp-agulhas':      'Olá! Quero pedir Agulhas (5 unidades) por R$100,00. Meu CEP é: ',
-  'wpp-eletrolitos':  'Olá! Quero pedir Eletrólitos (10 unidades) por R$120,00. Meu CEP é: ',
-  'wpp-borbulhador':  'Olá! Quero pedir um Borbulhador por R$120,00. Meu CEP é: ',
-  'wpp-reservatorio': 'Olá! Quero pedir um Reservatório por R$120,00. Meu CEP é: ',
-  'wpp-mangueira':    'Olá! Quero pedir a Mangueira Completa por R$150,00. Meu CEP é: ',
-  'wpp-kit1':         'Olá! Quero pedir o Kit 1 (Borbulhador + Reservatório + Mangueira) por R$350,00. Meu CEP é: ',
-  'wpp-kit2':         'Olá! Quero pedir o Kit 2 (5 Agulhas + 10 Eletrólitos) por R$200,00. Meu CEP é: ',
-  'wpp-kit3':         'Olá! Quero pedir o Kit 3 completo por R$500,00. Meu CEP é: ',
+  'wpp-agulhas':      'Olá! Quero pedir Agulhas (5 unidades) por R$120,00. Meu CEP é: ',
+  'wpp-eletrolitos':  'Olá! Quero pedir Eletrólitos (10 unidades) por R$150,00. Meu CEP é: ',
+  'wpp-borbulhador':  'Olá! Quero pedir um Borbulhador por R$150,00. Meu CEP é: ',
+  'wpp-reservatorio': 'Olá! Quero pedir um Reservatório por R$150,00. Meu CEP é: ',
+  'wpp-mangueira':    'Olá! Quero pedir a Mangueira Completa por R$200,00. Meu CEP é: ',
+  'wpp-kit1':         'Olá! Quero pedir o Kit 02 Estrutural (Borbulhador + Reservatório + Mangueira) por R$400,00. Meu CEP é: ',
+  'wpp-kit2':         'Olá! Quero pedir o Kit 01 de Reposição (5 Agulhas + 10 Eletrólitos) por R$250,00. Meu CEP é: ',
+  'wpp-kit3':         'Olá! Quero pedir o Kit 03 Completo por R$550,00. Meu CEP é: ',
 };
 
 Object.entries(wppTextos).forEach(([id, texto]) => {
@@ -197,7 +198,7 @@ document.querySelectorAll('.product-card, .kit-card, .benefit-card, .testimonial
     var dots = document.querySelectorAll('#car-' + id + '-dots .prod-carousel-dot');
     dots.forEach(function(d, i) { d.classList.toggle('active', i === s.cur); });
   }
-})
+})();
 // ═══════════════════════════════════════
 // STATUS PÓS-PAGAMENTO
 // ═══════════════════════════════════════
