@@ -15,7 +15,7 @@
     --c-white-10: rgba(13,33,55,0.06);
     --c-green: #71bb4d;
     --c-green-dim: rgba(113,187,77,0.15);
-    --font-display: 'Merriweather', sans-serif;
+    --font-display: 'Merriweather', sans-serif;,
     --font-body: 'DM Sans', sans-serif;
     --wpp: #25d366;
     --wpp-dark: #128c7e;
@@ -374,9 +374,9 @@
   /* ── HERO PRODUCT SHOWCASE ── */
   .hero-inner {
     display: grid;
-    grid-template-columns: 1fr 0.9fr;
-    align-items: center;
-    gap: 50px;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 60px;
     width: 100%;
   }
   .hero-product-showcase {
@@ -394,7 +394,7 @@
   }
   .hero-product-main img {
     width: 100%;
-    height: 420px; 
+    height: 420px;
     object-fit: cover;
     object-position: center center;
     display: block;
