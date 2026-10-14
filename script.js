@@ -69,8 +69,8 @@ Object.entries(produtos).forEach(([id, produto]) => {
 // WHATSAPP — Mensagens por produto
 // ═══════════════════════════════════════
 const wppTextos = {
-  'wpp-h1':           'Olá! Tenho interesse no Maçarico H1 (R$2.699,00). Meu CEP é: ',
-  'wpp-h1r':          'Olá! Tenho interesse no Maçarico H1R (R$4.699,00). Meu CEP é: ',
+  'wpp-h1':           'Olá! Tenho interesse no Maçarico H1 (R$3.299,00). Meu CEP é: ',
+  'wpp-h1r':          'Olá! Tenho interesse no Maçarico H1R (R$5.299,00). Meu CEP é: ',
   'wpp-agulhas':      'Olá! Quero pedir Agulhas (5 unidades) por R$120,00. Meu CEP é: ',
   'wpp-eletrolitos':  'Olá! Quero pedir Eletrólitos (10 unidades) por R$150,00. Meu CEP é: ',
   'wpp-borbulhador':  'Olá! Quero pedir um Borbulhador por R$150,00. Meu CEP é: ',

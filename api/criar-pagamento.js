@@ -1,7 +1,8 @@
 import { MercadoPagoConfig, Preference } from "mercadopago";
 
+const accessToken = process.env.MERCADO_PAGO_ACCESS_TOKEN;
 const client = new MercadoPagoConfig({
-  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN
+  accessToken
 });
 
 const BASE_URL = "https://www.hidrogenbrasil.com.br";
@@ -52,7 +53,7 @@ const PRODUTOS = {
 
 export default async function handler(req, res) {
   try {
-    if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
+    if (!accessToken) {
       return res.status(500).json({ erro: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
     }
 
@@ -110,9 +111,15 @@ export default async function handler(req, res) {
   }
 });
 
-    return res.status(200).json({
-      checkout: response?.sandbox_init_point || response?.init_point || null
-    });
+    const checkout = accessToken.startsWith("TEST-")
+      ? response?.sandbox_init_point
+      : response?.init_point;
+
+    if (!checkout) {
+      throw new Error("Mercado Pago não retornou a URL de checkout esperada para estas credenciais.");
+    }
+
+    return res.status(200).json({ checkout });
 
   } catch (error) {
     const detalhe = error?.response?.data || error?.cause || null;
