@@ -27,17 +27,14 @@ const produtos = {
 // ═══════════════════════════════════════
 // CHECKOUT DIRETO
 // ═══════════════════════════════════════
-async function iniciarCheckout(produto, botao) {
-  const textoOriginal = botao.textContent;
-  botao.textContent = 'Preparando pagamento...';
-  botao.disabled = true;
-
+async function iniciarCheckout(produto, comprador) {
   try {
     const resposta = await fetch('/api/criar-pagamento', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        produto: { ...produto, quantidade: 1 }
+        produto: { ...produto, quantidade: 1 },
+        comprador
       })
     });
 
@@ -46,22 +43,184 @@ async function iniciarCheckout(produto, botao) {
     if (resposta.ok && dados.checkout) {
       window.location.href = dados.checkout;
     } else {
-      alert(dados.erro || 'Erro ao gerar pagamento. Tente pelo WhatsApp.');
+      throw new Error(dados.erro || 'Erro ao gerar pagamento. Tente pelo WhatsApp.');
     }
-  } catch {
-    alert('Erro ao conectar. Tente pelo WhatsApp.');
-  } finally {
-    botao.textContent = textoOriginal;
-    botao.disabled = false;
+  } catch (error) {
+    console.error('Erro ao conectar ao checkout:', error);
+    throw error instanceof Error && error.message
+      ? error
+      : new Error('Erro ao conectar. Tente novamente ou fale pelo WhatsApp.');
   }
 }
+
+const checkoutDialog = document.getElementById('checkoutAddressDialog');
+const checkoutForm = document.getElementById('checkoutAddressForm');
+const checkoutError = document.getElementById('checkoutAddressError');
+const checkoutSubmit = document.getElementById('checkoutAddressSubmit');
+const checkoutCep = checkoutForm.elements.cep;
+const checkoutPreview = document.getElementById('checkoutAddressPreview');
+const manualAddress = document.getElementById('checkoutManualAddress');
+const manualAddressFields = ['rua', 'cidade', 'estado'].map((name) => checkoutForm.elements[name]);
+let produtoSelecionado = null;
+let botaoCheckoutSelecionado = null;
+let cepConsultado = '';
+let enderecoCep = null;
+
+function definirEnderecoManual(ativo) {
+  manualAddress.hidden = !ativo;
+  manualAddress.open = ativo;
+  manualAddressFields.forEach((field) => {
+    field.disabled = !ativo;
+    field.required = ativo;
+  });
+}
+
+function limparEnderecoCep() {
+  cepConsultado = '';
+  enderecoCep = null;
+  checkoutPreview.hidden = true;
+  checkoutPreview.textContent = '';
+  definirEnderecoManual(false);
+  manualAddressFields.forEach((field) => { field.value = ''; });
+}
+
+async function consultarCep() {
+  const cep = checkoutCep.value.replace(/\D/g, '');
+  if (!/^\d{8}$/.test(cep)) {
+    checkoutPreview.textContent = 'Digite um CEP válido com 8 números.';
+    checkoutPreview.hidden = false;
+    limparEnderecoCep();
+    return false;
+  }
+  if (cep === cepConsultado && enderecoCep) return true;
+
+  checkoutPreview.textContent = 'Buscando endereço pelo CEP...';
+  checkoutPreview.hidden = false;
+  try {
+    const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    if (!resposta.ok) throw new Error(`ViaCEP respondeu com HTTP ${resposta.status}.`);
+
+    const endereco = await resposta.json();
+    if (endereco.erro) throw new Error('CEP não encontrado.');
+
+    cepConsultado = cep;
+    enderecoCep = {
+      rua: endereco.logradouro || '',
+      cidade: endereco.localidade || '',
+      estado: (endereco.uf || '').toUpperCase(),
+    };
+
+    if (!enderecoCep.rua) {
+      checkoutPreview.textContent = 'CEP localizado. Informe a rua para completar o endereço.';
+      definirEnderecoManual(true);
+    } else {
+      const bairro = endereco.bairro ? `, ${endereco.bairro}` : '';
+      checkoutPreview.textContent = `${enderecoCep.rua}${bairro} — ${enderecoCep.cidade}/${enderecoCep.estado}`;
+      checkoutPreview.hidden = false;
+      definirEnderecoManual(false);
+    }
+    return true;
+  } catch (error) {
+    console.error('Não foi possível consultar o CEP:', error);
+    cepConsultado = cep;
+    enderecoCep = null;
+    checkoutPreview.textContent = 'Não conseguimos localizar esse CEP automaticamente. Preencha rua, cidade e estado.';
+    checkoutPreview.hidden = false;
+    definirEnderecoManual(true);
+    return false;
+  }
+}
+
+checkoutCep.addEventListener('input', (event) => {
+  const input = event.currentTarget;
+  const digits = input.value.replace(/\D/g, '').slice(0, 8);
+  input.value = digits.length > 5 ? `${digits.slice(0, 5)}-${digits.slice(5)}` : digits;
+  limparEnderecoCep();
+});
+
+checkoutCep.addEventListener('blur', consultarCep);
+
+checkoutForm.elements.estado.addEventListener('input', (event) => {
+  event.currentTarget.value = event.currentTarget.value.toUpperCase().slice(0, 2);
+});
+
+checkoutForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (!produtoSelecionado || !botaoCheckoutSelecionado) return;
+
+  checkoutError.hidden = true;
+  checkoutSubmit.disabled = true;
+  checkoutSubmit.textContent = 'Preparando pagamento...';
+  botaoCheckoutSelecionado.disabled = true;
+
+  if (checkoutCep.value.replace(/\D/g, '') !== cepConsultado) {
+    const encontrado = await consultarCep();
+    if (!encontrado) {
+      checkoutSubmit.disabled = false;
+      checkoutSubmit.textContent = 'Continuar para pagamento';
+      botaoCheckoutSelecionado.disabled = false;
+      return;
+    }
+  }
+
+  const dados = new FormData(checkoutForm);
+  const comprador = {
+    cep: checkoutCep.value.replace(/\D/g, ''),
+    rua: String(dados.get('rua') || enderecoCep?.rua || '').trim(),
+    numero: String(dados.get('numero') || '').trim(),
+    complemento: String(dados.get('complemento') || '').trim(),
+    cidade: String(dados.get('cidade') || enderecoCep?.cidade || '').trim(),
+    estado: String(dados.get('estado') || enderecoCep?.estado || '').trim(),
+  };
+
+  if (!comprador.rua || !comprador.cidade || !comprador.estado) {
+    checkoutError.textContent = 'Confira o endereço de entrega antes de continuar.';
+    checkoutError.hidden = false;
+    checkoutSubmit.disabled = false;
+    checkoutSubmit.textContent = 'Continuar para pagamento';
+    botaoCheckoutSelecionado.disabled = false;
+    return;
+  }
+
+  try {
+    await iniciarCheckout(produtoSelecionado, comprador);
+  } catch (error) {
+    checkoutError.textContent = error.message;
+    checkoutError.hidden = false;
+    checkoutSubmit.disabled = false;
+    checkoutSubmit.textContent = 'Continuar para pagamento';
+    botaoCheckoutSelecionado.disabled = false;
+  }
+});
+
+function fecharCheckoutDialog() {
+  checkoutDialog.close();
+  produtoSelecionado = null;
+  botaoCheckoutSelecionado = null;
+  checkoutForm.reset();
+  checkoutError.hidden = true;
+  limparEnderecoCep();
+}
+
+document.getElementById('checkoutAddressClose').addEventListener('click', fecharCheckoutDialog);
+document.getElementById('checkoutAddressCancel').addEventListener('click', fecharCheckoutDialog);
+checkoutDialog.addEventListener('click', (event) => {
+  if (event.target === checkoutDialog) fecharCheckoutDialog();
+});
 
 Object.entries(produtos).forEach(([id, produto]) => {
   const botao = document.getElementById(id);
   if (!botao) return;
   botao.addEventListener('click', (e) => {
     e.preventDefault();
-    iniciarCheckout(produto, botao);
+    produtoSelecionado = produto;
+    botaoCheckoutSelecionado = botao;
+    checkoutForm.reset();
+    limparEnderecoCep();
+    checkoutError.hidden = true;
+    checkoutSubmit.disabled = false;
+    checkoutSubmit.textContent = 'Continuar para pagamento';
+    checkoutDialog.showModal();
   });
 });
 

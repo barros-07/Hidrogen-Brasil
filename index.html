@@ -937,6 +937,49 @@
   </div>
 </footer>
 
+<dialog id="checkoutAddressDialog" class="checkout-dialog" aria-labelledby="checkoutAddressTitle">
+  <form id="checkoutAddressForm" class="checkout-dialog-form">
+    <button type="button" class="checkout-dialog-close" id="checkoutAddressClose" aria-label="Fechar">×</button>
+    <h2 id="checkoutAddressTitle">Endereço para entrega</h2>
+    <p>Digite o CEP e o número; completamos o restante do endereço para você.</p>
+
+    <div class="checkout-fields">
+      <label>CEP
+        <input name="cep" inputmode="numeric" autocomplete="postal-code" maxlength="9" pattern="\d{5}-?\d{3}" placeholder="00000-000" required>
+      </label>
+      <label>Número
+        <input name="numero" inputmode="numeric" autocomplete="address-line2" maxlength="20" required>
+      </label>
+      <label>Complemento <span>(opcional)</span>
+        <input name="complemento" maxlength="80">
+      </label>
+    </div>
+    <p id="checkoutAddressPreview" class="checkout-address-preview" aria-live="polite" hidden></p>
+
+    <details id="checkoutManualAddress" class="checkout-manual-address" hidden>
+      <summary>Não encontrou seu endereço? Preencher manualmente</summary>
+      <div class="checkout-manual-fields">
+        <label>Rua / Avenida
+          <input name="rua" autocomplete="address-line1" maxlength="120" disabled>
+        </label>
+        <label>Cidade
+          <input name="cidade" autocomplete="address-level2" maxlength="80" disabled>
+        </label>
+        <label>Estado (UF)
+          <input name="estado" autocomplete="address-level1" maxlength="2" minlength="2" pattern="[A-Za-z]{2}" placeholder="SP" disabled>
+        </label>
+      </div>
+    </details>
+
+    <p class="checkout-dialog-privacy">O número da residência não é identificado pelo CEP. Nome e dados de pagamento são preenchidos no checkout do Mercado Pago.</p>
+    <p id="checkoutAddressError" class="checkout-dialog-error" role="alert" hidden></p>
+    <div class="checkout-dialog-actions">
+      <button type="button" class="btn btn-outline" id="checkoutAddressCancel">Cancelar</button>
+      <button type="submit" class="btn btn-primary" id="checkoutAddressSubmit">Continuar para pagamento</button>
+    </div>
+  </form>
+</dialog>
+
 <!-- ╔═══════════════════════════════════╗ -->
 <!-- ║          WHATSAPP FLOAT           ║ -->
 <!-- ╚═══════════════════════════════════╝ -->

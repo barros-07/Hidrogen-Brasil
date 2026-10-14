@@ -56,6 +56,8 @@ export default async function handler(req, res) {
     const client = new MercadoPagoConfig({ accessToken });
     const paymentClient = new Payment(client);
     const payment = await paymentClient.get({ id: paymentId });
+    const payerAddress = payment.payer?.address || payment.additional_info?.payer?.address || {};
+    const receiverAddress = payment.additional_info?.shipments?.receiver_address || {};
 
     console.info("Pagamento consultado após notificação do Mercado Pago.", {
       evento: req.body?.action || "payment.updated",
@@ -64,6 +66,14 @@ export default async function handler(req, res) {
       statusDetail: payment.status_detail || null,
       liveMode: payment.live_mode ?? null,
       externalReference: payment.external_reference || null,
+      enderecoEntrega: {
+        cep: receiverAddress.zip_code || payerAddress.zip_code || null,
+        rua: receiverAddress.street_name || payerAddress.street_name || null,
+        numero: receiverAddress.street_number || payerAddress.street_number || null,
+        complemento: receiverAddress.apartment || null,
+        cidade: receiverAddress.city_name || null,
+        estado: receiverAddress.state_name || null,
+      },
     });
 
     return res.status(200).json({ recebido: true });

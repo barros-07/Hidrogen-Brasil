@@ -56,10 +56,39 @@ export default async function handler(req, res) {
       return res.status(500).json({ erro: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
     }
 
+    const checkoutMode = process.env.MERCADO_PAGO_CHECKOUT_MODE;
+    if (checkoutMode !== "sandbox" && checkoutMode !== "production") {
+      return res.status(500).json({
+        erro: "MERCADO_PAGO_CHECKOUT_MODE deve ser configurado como sandbox ou production."
+      });
+    }
+
     const { produto, comprador } = req.body || {};
 
     if (!produto || !produto.nome || !produto.preco) {
       return res.status(400).json({ erro: "Dados do produto inválidos." });
+    }
+
+    if (!comprador || typeof comprador !== "object" || Array.isArray(comprador)) {
+      return res.status(400).json({ erro: "Informe o CEP e o endereço de entrega." });
+    }
+
+    const cep = typeof comprador.cep === "string" ? comprador.cep.replace(/\D/g, "") : "";
+    const rua = typeof comprador.rua === "string" ? comprador.rua.trim() : "";
+    const numero = typeof comprador.numero === "string" ? comprador.numero.trim() : "";
+    const complemento = typeof comprador.complemento === "string" ? comprador.complemento.trim() : "";
+    const cidade = typeof comprador.cidade === "string" ? comprador.cidade.trim() : "";
+    const estado = typeof comprador.estado === "string" ? comprador.estado.trim().toUpperCase() : "";
+
+    if (
+      !/^\d{8}$/.test(cep) ||
+      !rua || rua.length > 120 ||
+      !numero || numero.length > 20 ||
+      complemento.length > 80 ||
+      !cidade || cidade.length > 80 ||
+      !/^[A-Z]{2}$/.test(estado)
+    ) {
+      return res.status(400).json({ erro: "Confira os dados do comprador e o endereço de entrega." });
     }
 
     const extra = PRODUTOS[produto.nome] || {};
@@ -87,32 +116,31 @@ export default async function handler(req, res) {
     external_reference: `HB-${Date.now()}`,
     expires: true,
     expiration_date_to: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-    payer: comprador ? {
-      name: comprador.nome.split(' ')[0],
-      surname: comprador.nome.split(' ').slice(1).join(' '),
-      email: comprador.email,
-      address: {
-        zip_code: comprador.cep.replace('-', ''),
-        street_name: comprador.rua,
-        street_number: Number(comprador.numero) || 0,
-      }
-    } : undefined,
-    shipments: comprador ? {
+    shipments: {
       receiver_address: {
-        zip_code: comprador.cep.replace('-', ''),
-        street_name: comprador.rua,
-        street_number: Number(comprador.numero) || 0,
-        apartment: comprador.complemento || '',
-        city_name: comprador.cidade,
-        state_name: comprador.estado,
+        zip_code: cep,
+        street_name: rua,
+        street_number: numero,
+        apartment: complemento,
+        city_name: cidade,
+        state_name: estado,
+        country_name: "Brasil",
       }
-    } : undefined,
+    },
   }
 });
 
-    return res.status(200).json({
-      checkout: response?.sandbox_init_point || response?.init_point || null
-    });
+    const checkout = checkoutMode === "sandbox"
+      ? response?.sandbox_init_point
+      : response?.init_point;
+
+    if (!checkout) {
+      return res.status(502).json({
+        erro: `Mercado Pago não retornou o link de checkout do modo ${checkoutMode}.`
+      });
+    }
+
+    return res.status(200).json({ checkout });
 
   } catch (error) {
     const detalhe = error?.response?.data || error?.cause || null;
