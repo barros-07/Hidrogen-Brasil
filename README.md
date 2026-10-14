@@ -44,9 +44,21 @@ O endpoint usa `sandbox_init_point` quando a credencial de teste está ativa. Pa
 
 ## Webhook de pagamentos Mercado Pago
 
-O endpoint público `https://www.hidrogenbrasil.com.br/api/webhook-mercadopago` recebe notificações do tipo **Pagamentos**, valida a assinatura usando o segredo do webhook e consulta o pagamento na API do Mercado Pago. O status e detalhes básicos são registrados nos logs da função na Vercel. O projeto ainda não tem banco de dados, então esses logs não substituem um histórico persistente de pedidos. Consulte também a [documentação oficial de Webhooks](https://www.mercadopago.com.br/developers/pt/docs/checkout-api-payments/additional-content/your-integrations/notifications/webhooks).
+O endpoint público `https://www.hidrogenbrasil.com.br/api/webhook-mercadopago` recebe notificações do tipo **Pagamentos**, valida a assinatura usando o segredo do webhook e consulta o pagamento na API do Mercado Pago. Quando a notificação permite, também consulta o pedido/preferência original para recuperar o endereço de entrega enviado no checkout. O status e os dados retornados são registrados nos logs da função na Vercel. O projeto ainda não tem banco de dados, então esses logs não substituem um histórico persistente de pedidos. Consulte também a [documentação oficial de Webhooks](https://www.mercadopago.com.br/developers/pt/docs/checkout-api-payments/additional-content/your-integrations/notifications/webhooks).
 
 Antes de abrir o checkout, o site solicita somente o CEP e o número da residência (complemento opcional). O endereço é preenchido pelo ViaCEP; se a busca não localizar uma rua, o comprador pode informar rua, cidade e estado manualmente. A documentação do Checkout Pro não garante a coleta automática do endereço de entrega, então o site envia o endereço de entrega na preferência. Nome e dados de pagamento são preenchidos no fluxo do Mercado Pago. Após a notificação, o webhook registra nos logs o endereço que a API retornar.
+
+### Envio de pedidos aprovados por e-mail
+
+Quando o pagamento é consultado com status `approved`, o webhook envia ao responsável um e-mail com produto, valor, identificador do pagamento e endereço de entrega retornado pelo Mercado Pago. O envio usa a API do [Resend](https://resend.com/), não envia e-mail para o comprador e usa uma chave de idempotência baseada no identificador do pagamento.
+
+Configure estas variáveis na Vercel para cada ambiente de teste/produção usado:
+
+- `RESEND_API_KEY`: chave de API do Resend.
+- `ORDER_NOTIFICATION_EMAIL`: e-mail que receberá os pedidos.
+- `ORDER_NOTIFICATION_FROM`: remetente autorizado em um domínio verificado no Resend, por exemplo `Pedidos Hidrogen <pedidos@seudominioverificado.com>`.
+
+O remetente precisa pertencer a um domínio verificado no Resend. Após salvar as variáveis, faça um novo deploy. Se o envio falhar, o webhook responde com erro para o Mercado Pago tentar entregar novamente; confira os logs da função para diagnosticar a falha.
 
 Para configurar:
 
