@@ -941,9 +941,12 @@
   <form id="checkoutAddressForm" class="checkout-dialog-form">
     <button type="button" class="checkout-dialog-close" id="checkoutAddressClose" aria-label="Fechar">×</button>
     <h2 id="checkoutAddressTitle">Endereço para entrega</h2>
-    <p>Digite o CEP e o número; completamos o restante do endereço para você.</p>
+    <p>Informe seu e-mail e o endereço de entrega para continuar.</p>
 
     <div class="checkout-fields">
+      <label>E-mail
+        <input name="email" type="email" autocomplete="email" maxlength="254" required>
+      </label>
       <label>CEP
         <input name="cep" inputmode="numeric" autocomplete="postal-code" maxlength="9" pattern="\d{5}-?\d{3}" placeholder="00000-000" required>
       </label>

@@ -165,6 +165,7 @@ checkoutForm.addEventListener('submit', async (event) => {
 
   const dados = new FormData(checkoutForm);
   const comprador = {
+    email: String(dados.get('email') || '').trim(),
     cep: checkoutCep.value.replace(/\D/g, ''),
     rua: String(dados.get('rua') || enderecoCep?.rua || '').trim(),
     numero: String(dados.get('numero') || '').trim(),

@@ -73,6 +73,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ erro: "Informe o CEP e o endereço de entrega." });
     }
 
+    const email = typeof comprador.email === "string" ? comprador.email.trim() : "";
     const cep = typeof comprador.cep === "string" ? comprador.cep.replace(/\D/g, "") : "";
     const rua = typeof comprador.rua === "string" ? comprador.rua.trim() : "";
     const numero = typeof comprador.numero === "string" ? comprador.numero.trim() : "";
@@ -81,6 +82,7 @@ export default async function handler(req, res) {
     const estado = typeof comprador.estado === "string" ? comprador.estado.trim().toUpperCase() : "";
 
     if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 ||
       !/^\d{8}$/.test(cep) ||
       !rua || rua.length > 120 ||
       !numero || numero.length > 20 ||
@@ -107,6 +109,7 @@ export default async function handler(req, res) {
         currency_id: 'BRL',
       }
     ],
+    payer: { email },
     back_urls: {
       success: `${BASE_URL}/?status=sucesso`,
       failure: `${BASE_URL}/?status=falha`,

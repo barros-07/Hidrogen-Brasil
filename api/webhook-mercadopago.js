@@ -38,6 +38,9 @@ async function enviarNotificacaoPedido({ payment, paymentId, deliveryAddress }) 
     `Valor: ${payment.transaction_amount ?? "Não informado"} ${payment.currency_id || "BRL"}`,
     `Pagamento: ${paymentId}`,
     `Referência do pedido: ${payment.external_reference || "Não informada"}`,
+    `Cliente: ${[payment.payer?.first_name, payment.payer?.last_name].filter(Boolean).join(" ") || "Não informado"}`,
+    `E-mail: ${payment.payer?.email || "Não informado"}`,
+    `Telefone: ${[payment.payer?.phone?.area_code, payment.payer?.phone?.number].filter(Boolean).join(" ") || "Não informado"}`,
     "",
     "Endereço de entrega:",
     ...(addressLines.length ? addressLines : ["Não retornado pelo Mercado Pago."]),
@@ -61,6 +64,46 @@ async function enviarNotificacaoPedido({ payment, paymentId, deliveryAddress }) 
   if (!resposta.ok) {
     const detalhe = await resposta.text();
     throw new Error(`Resend respondeu HTTP ${resposta.status}: ${detalhe}`);
+  }
+}
+
+async function enviarConfirmacaoComprador({ payment, paymentId, email, descricaoProduto }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const remetente = process.env.ORDER_NOTIFICATION_FROM;
+  if (!apiKey || !remetente || !email) {
+    throw new Error("Não foi possível preparar o e-mail de confirmação do comprador.");
+  }
+
+  const texto = [
+    "Seu pagamento foi aprovado. Obrigado por comprar na Hidrogen Brasil!",
+    "",
+    `Produto: ${payment.description || "Não informado"}`,
+    descricaoProduto ? `Sobre o produto: ${descricaoProduto}` : null,
+    `Valor: ${payment.transaction_amount ?? "Não informado"} ${payment.currency_id || "BRL"}`,
+    `Pagamento: ${paymentId}`,
+    "",
+    "Em caso de dúvidas, fale com nosso atendimento pelo WhatsApp:",
+    "https://wa.me/5519995287194",
+  ].filter(Boolean).join("\n");
+
+  const resposta = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+      "Idempotency-Key": `mercadopago-buyer-approved-${paymentId}`,
+    },
+    body: JSON.stringify({
+      from: remetente,
+      to: [email],
+      subject: `Pedido aprovado: ${payment.description || `pedido ${paymentId}`}`,
+      text: texto,
+    }),
+  });
+
+  if (!resposta.ok) {
+    const detalhe = await resposta.text();
+    throw new Error(`Resend respondeu HTTP ${resposta.status} ao enviar ao comprador: ${detalhe}`);
   }
 }
 
@@ -116,6 +159,8 @@ export default async function handler(req, res) {
     const paymentClient = new Payment(client);
     const payment = await paymentClient.get({ id: paymentId });
     let preferenceAddress = {};
+    let preferencePayer = {};
+    let descricaoProduto = "";
 
     if (payment.order?.id) {
       try {
@@ -130,6 +175,8 @@ export default async function handler(req, res) {
             preferenceId: merchantOrder.preference_id,
           });
           preferenceAddress = preference.shipments?.receiver_address || {};
+          preferencePayer = preference.payer || {};
+          descricaoProduto = preference.items?.[0]?.description || "";
         } else {
           console.warn("Pedido Mercado Pago sem preferência associada.", {
             paymentId,
@@ -167,8 +214,17 @@ export default async function handler(req, res) {
     });
 
     if (payment.status === "approved") {
-      await enviarNotificacaoPedido({ payment, paymentId, deliveryAddress });
-      console.info("Notificação de pagamento aprovado enviada por e-mail.", { paymentId });
+      const emailComprador = payment.payer?.email || preferencePayer.email;
+      await Promise.all([
+        enviarConfirmacaoComprador({
+          payment,
+          paymentId,
+          email: emailComprador,
+          descricaoProduto,
+        }),
+        enviarNotificacaoPedido({ payment, paymentId, deliveryAddress }),
+      ]);
+      console.info("E-mails de pagamento aprovado enviados.", { paymentId });
     }
 
     return res.status(200).json({ recebido: true });
