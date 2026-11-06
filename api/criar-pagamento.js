@@ -28,15 +28,19 @@ const PRODUTOS = {
     descricao: 'Mangueira completa de reposição para maçarico HidrogenBrasil.',
     imagem: `${IMG_URL}/mangueira.webp`,
   },
-  'Kit 1 — Borbulhador + Reservatório + Mangueira': {
-    descricao: 'Kit 1 HidrogenBrasil: Borbulhador + Reservatório + Mangueira completa.',
+  'Tampa do reservatório': {
+    descricao: 'Tampa de reposição para reservatório HidrogenBrasil.',
+    imagem: `${IMG_URL}/tampa-reservatorio.png`,
+  },
+  'Kit 02 — Estrutural (Borbulhador + Reservatório + Mangueira)': {
+    descricao: 'Kit estrutural HidrogenBrasil: Borbulhador + Reservatório + Mangueira completa.',
     imagem: `${IMG_URL}/borbulhador.webp`,
   },
-  'Kit 2 — 5 Agulhas + 10 Eletrólitos': {
-    descricao: 'Kit 2 HidrogenBrasil: 5 Agulhas + 10 Eletrólitos.',
+  'Kit 01 — Reposição (5 Agulhas + 10 Eletrólitos)': {
+    descricao: 'Kit de reposição HidrogenBrasil: 5 Agulhas + 10 Eletrólitos.',
     imagem: `${IMG_URL}/agulha-extrafina.webp`,
   },
-  'Kit 3 — Borbulhador + Reservatório + Mangueira + 5 Agulhas + 10 Eletrólitos': {
+  'Kit 03 — Completo (Borbulhador + Reservatório + Mangueira + 5 Agulhas + 10 Eletrólitos)': {
     descricao: 'Kit 3 HidrogenBrasil completo: Borbulhador + Reservatório + Mangueira + 5 Agulhas + 10 Eletrólitos.',
     imagem: `${IMG_URL}/borbulhador.webp`,
   },
