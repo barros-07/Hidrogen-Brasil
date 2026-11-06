@@ -5,7 +5,7 @@ const client = new MercadoPagoConfig({
 });
 
 const BASE_URL = "https://www.hidrogenbrasil.com.br";
-const IMG_URL  = `${BASE_URL}/imagem`;
+const IMG_URL  = `${BASE_URL}/imagem/otimizada`;
 
 const PRODUTOS = {
   'Agulhas (5 unidades)': {
@@ -22,7 +22,7 @@ const PRODUTOS = {
   },
   'Reservatório': {
     descricao: 'Reservatório de reposição para gerador HidrogenBrasil.',
-    imagem: `${IMG_URL}/reservatório.webp`,
+    imagem: `${IMG_URL}/reservatorio.webp`,
   },
   'Mangueira Completa': {
     descricao: 'Mangueira completa de reposição para maçarico HidrogenBrasil.',
@@ -30,7 +30,7 @@ const PRODUTOS = {
   },
   'Tampa do reservatório': {
     descricao: 'Tampa de reposição para reservatório HidrogenBrasil.',
-    imagem: `${IMG_URL}/tampa-reservatorio.png`,
+    imagem: `${IMG_URL}/tampa-reservatorio.webp`,
   },
   'Kit 02 — Estrutural (Borbulhador + Reservatório + Mangueira)': {
     descricao: 'Kit estrutural HidrogenBrasil: Borbulhador + Reservatório + Mangueira completa.',
@@ -46,11 +46,11 @@ const PRODUTOS = {
   },
   'Maçarico H1': {
     descricao: 'Maçarico HidrogenBrasil H1 — gerador de hidrogênio para uso profissional.',
-    imagem: `${IMG_URL}/maçarico-na-estante-frontal.webp`,
+    imagem: `${IMG_URL}/macarico-frontal.webp`,
   },
   'Maçarico H1R': {
     descricao: 'Maçarico HidrogenBrasil H1R — modelo avançado com maior capacidade.',
-    imagem: `${IMG_URL}/maçarico-na-estante-na-diagonal.webp`,
+    imagem: `${IMG_URL}/macarico-diagonal.webp`,
   },
 };
 
