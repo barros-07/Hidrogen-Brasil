@@ -11,7 +11,7 @@ function getValue(value) {
   return Array.isArray(value) ? value[0] : value;
 }
 
-async function enviarNotificacaoPedido({ payment, paymentId, deliveryAddress }) {
+async function enviarNotificacaoPedido({ payment, paymentId, deliveryAddress, preferencePayer }) {
   const apiKey = process.env.RESEND_API_KEY;
   const destinatario = process.env.ORDER_NOTIFICATION_EMAIL;
   const remetente = process.env.ORDER_NOTIFICATION_FROM;
@@ -30,6 +30,10 @@ async function enviarNotificacaoPedido({ payment, paymentId, deliveryAddress }) 
       : deliveryAddress.cidade || deliveryAddress.estado,
     deliveryAddress.cep,
   ].filter(Boolean);
+  const phoneNumber = [
+    payment.payer?.phone?.area_code || preferencePayer.phone?.area_code,
+    payment.payer?.phone?.number || preferencePayer.phone?.number,
+  ].filter(Boolean).join(" ");
 
   const texto = [
     "Pagamento aprovado no site Hidrogen Brasil.",
@@ -40,7 +44,7 @@ async function enviarNotificacaoPedido({ payment, paymentId, deliveryAddress }) 
     `Referência do pedido: ${payment.external_reference || "Não informada"}`,
     `Cliente: ${[payment.payer?.first_name, payment.payer?.last_name].filter(Boolean).join(" ") || "Não informado"}`,
     `E-mail: ${payment.payer?.email || "Não informado"}`,
-    `Telefone: ${[payment.payer?.phone?.area_code, payment.payer?.phone?.number].filter(Boolean).join(" ") || "Não informado"}`,
+    `Telefone: ${phoneNumber || "Não informado"}`,
     "",
     "Endereço de entrega:",
     ...(addressLines.length ? addressLines : ["Não retornado pelo Mercado Pago."]),
@@ -222,7 +226,7 @@ export default async function handler(req, res) {
           email: emailComprador,
           descricaoProduto,
         }),
-        enviarNotificacaoPedido({ payment, paymentId, deliveryAddress }),
+        enviarNotificacaoPedido({ payment, paymentId, deliveryAddress, preferencePayer }),
       ]);
       console.info("E-mails de pagamento aprovado enviados.", { paymentId });
     }

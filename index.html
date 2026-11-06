@@ -795,7 +795,7 @@
           Vocês têm Instagram?
           <div class="faq-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg></div>
         </div>
-        <div class="faq-answer"><div class="faq-answer-inner">Sim! Temos Instagram onde compartilhamos fotos dos produtos, novidades e depoimentos de clientes. Você pode nos encontrar como @hidrogenbrasil. Também pode pedir fotos dos produtos específicos via WhatsApp antes de comprar.</div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Sim! Temos Instagram onde compartilhamos fotos dos produtos, novidades e depoimentos de clientes. Você pode nos encontrar como @hidrogenbrasil.</div></div>
       </div>
     </div>
     <div class="faq-contact">
@@ -941,11 +941,14 @@
   <form id="checkoutAddressForm" class="checkout-dialog-form">
     <button type="button" class="checkout-dialog-close" id="checkoutAddressClose" aria-label="Fechar">×</button>
     <h2 id="checkoutAddressTitle">Endereço para entrega</h2>
-    <p>Informe seu e-mail e o endereço de entrega para continuar.</p>
+    <p>Informe seu e-mail, telefone opcional e endereço de entrega para continuar.</p>
 
     <div class="checkout-fields">
       <label>E-mail
         <input name="email" type="email" autocomplete="email" maxlength="254" required>
+      </label>
+      <label>Telefone / WhatsApp <span>(opcional)</span>
+        <input name="telefone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="(11) 99999-9999">
       </label>
       <label>CEP
         <input name="cep" inputmode="numeric" autocomplete="postal-code" maxlength="9" pattern="\d{5}-?\d{3}" placeholder="00000-000" required>
@@ -974,7 +977,7 @@
       </div>
     </details>
 
-    <p class="checkout-dialog-privacy">O número da residência não é identificado pelo CEP. Nome e dados de pagamento são preenchidos no checkout do Mercado Pago.</p>
+    <p class="checkout-dialog-privacy">O número da residência não é identificado pelo CEP. Se informar telefone, ele será enviado ao Mercado Pago e poderá aparecer na notificação do pedido. Nome e dados de pagamento são preenchidos no checkout do Mercado Pago. O pagamento aceita Pix ou cartão em até 6 vezes.</p>
     <p id="checkoutAddressError" class="checkout-dialog-error" role="alert" hidden></p>
     <div class="checkout-dialog-actions">
       <button type="button" class="btn btn-outline" id="checkoutAddressCancel">Cancelar</button>

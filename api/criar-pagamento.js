@@ -74,6 +74,12 @@ export default async function handler(req, res) {
     }
 
     const email = typeof comprador.email === "string" ? comprador.email.trim() : "";
+    let telefone = typeof comprador.telefone === "string"
+      ? comprador.telefone.replace(/\D/g, "")
+      : "";
+    if (telefone.startsWith("55") && [12, 13].includes(telefone.length)) {
+      telefone = telefone.slice(2);
+    }
     const cep = typeof comprador.cep === "string" ? comprador.cep.replace(/\D/g, "") : "";
     const rua = typeof comprador.rua === "string" ? comprador.rua.trim() : "";
     const numero = typeof comprador.numero === "string" ? comprador.numero.trim() : "";
@@ -83,6 +89,7 @@ export default async function handler(req, res) {
 
     if (
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 ||
+      (telefone && !/^\d{10,11}$/.test(telefone)) ||
       !/^\d{8}$/.test(cep) ||
       !rua || rua.length > 120 ||
       !numero || numero.length > 20 ||
@@ -109,7 +116,20 @@ export default async function handler(req, res) {
         currency_id: 'BRL',
       }
     ],
-    payer: { email },
+    payer: {
+      email,
+      ...(telefone
+        ? { phone: { area_code: telefone.slice(0, 2), number: telefone.slice(2) } }
+        : {}),
+    },
+    payment_methods: {
+      excluded_payment_types: [
+        { id: "ticket" },
+        { id: "atm" },
+        { id: "account_money" },
+      ],
+      installments: 6,
+    },
     back_urls: {
       success: `${BASE_URL}/?status=sucesso`,
       failure: `${BASE_URL}/?status=falha`,
