@@ -192,6 +192,18 @@
     gap: 32px;
   }
   .mobile-menu.open { display: flex; }
+  .mobile-menu .mobile-menu-brand {
+    position: absolute;
+    top: 28px;
+    left: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #0d2137;
+    font-size: 16px;
+    font-weight: 800;
+  }
+  .mobile-menu-brand img { width: 36px; height: 36px; flex-shrink: 0; }
   .mobile-menu a {
     font-family: var(--font-display);
     font-size: 26px;
@@ -205,7 +217,7 @@
     top: 24px; right: 24px;
     background: none;
     border: none;
-    color: white;
+    color: #0d2137;
     font-size: 28px;
     cursor: pointer;
     padding: 8px;
@@ -1761,11 +1773,11 @@
     border-radius: 28px;
     background: rgba(255,255,255,0.72);
     box-shadow: 0 28px 70px rgba(16,36,56,0.16), 0 0 0 10px rgba(255,255,255,0.36);
-    transform: rotate(1deg);
+    transform: none;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
   #hero .hero-product-showcase:hover {
-    transform: rotate(0) translateY(-4px);
+    transform: translateY(-4px);
     box-shadow: 0 34px 80px rgba(16,36,56,0.2), 0 0 0 10px rgba(255,255,255,0.45);
   }
   #hero .hero-product-main {
