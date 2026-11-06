@@ -130,7 +130,6 @@ export default async function handler(req, res) {
       excluded_payment_types: [
         { id: "ticket" },
         { id: "atm" },
-        { id: "account_money" },
       ],
       installments: 6,
     },
